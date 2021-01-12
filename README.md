@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+<!-- Requirements of Project -->
+
+<!-- For react routing -->
+npm install --save react-router-dom
+
+<!-- For Table -->
+npm install material-table --save
+
+<!-- For Api Operaion -->
+npm install axios
+
+<!-- For Toast Messages -->
+npm install --save react-toastify
