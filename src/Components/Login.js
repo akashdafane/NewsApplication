@@ -4,10 +4,13 @@ import './Login.css'
 import NewsDetails from './NewsDetails';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { startlogin } from "../actions/personAction";
+import { connect } from "react-redux";
 
-export default class Login extends Component {
-    constructor(props) {
-        super(props)
+
+class Login extends Component {
+    constructor() {
+        super()
 
         this.state = {
             email: "",
@@ -22,8 +25,12 @@ export default class Login extends Component {
 
 
     login = (e) => {
-
-        console.log(this.props)
+        e.preventDefault();
+        // console.log(this.props)
+        this.setState({ email: "", password: "" });
+        this.props.login(this.state);
+        // console.log("object",this.props.login)
+        
 
         if (this.state.email == "admin" && this.state.password == "admin1") {
             localStorage.setItem('newsdata', JSON.stringify(this.state.email));
@@ -57,7 +64,14 @@ export default class Login extends Component {
                                     </div>
 
                                 </div>
-                                <input type="email" placeholder="Enter Email" className="form-control" id="email1" name="email" onChange={this.handleState} />
+                                <input 
+                                type="email" 
+                                placeholder="Enter Email" 
+                                className="form-control" 
+                                id="email1" 
+                                name="email" 
+                                value={this.state.email}
+                                onChange={this.handleState} />
                             </div><br></br>
 
                             {/* <!--password--> */}
@@ -69,7 +83,13 @@ export default class Login extends Component {
                                     </div>
                                 </div>
 
-                                <input type="password" placeholder="Enter Password" className="form-control" name="password" onChange={this.handleState} />
+                                <input 
+                                type="password" 
+                                placeholder="Enter Password" 
+                                className="form-control" 
+                                name="password" 
+                                value={this.state.password}
+                                onChange={this.handleState} />
 
 
                             </div>
@@ -107,3 +127,22 @@ export default class Login extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      loggedIn: state.loggedIn,
+      loginProcessing: state.loginProcessing
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      login: data => dispatch(startlogin(data))
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login);
+  
