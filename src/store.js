@@ -1,18 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers/personReducer'
+import rootReducer from './reducers/index'
 
 
-const initialState = {
-    email:'akash',
-    password:'dafane'
-}
+
 
 const middleware = [thunk];
 
 const store = createStore(
     rootReducer,
-    initialState,
+    // initialState,
     applyMiddleware(...middleware)
 );
 

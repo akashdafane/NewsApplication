@@ -89,26 +89,35 @@
 
 
 
-import { LOGIN, REGISTER, LOGINPROCESSING,REGISTERING } from '../actions/actionType';
+import { LOGIN,
+    //  REGISTER, LOGINPROCESSING,REGISTERING
+     } from '../actions/actionType';
 
-export const reducer = (state = {}, action) => {
+const initialState = {
+    email:'',
+    password:'',
+    loggedIn: null,
+}
+
+export const person = (state = initialState, action) => {
+    console.log("action",action)
     switch (action.type) {
         case LOGIN:
             return {...state, loggedIn: true};
             break;
-        case REGISTER:
-            return {...state, registred: true};
-            break;
-        case LOGINPROCESSING:
-            return {...state, loginProcessing: true};
-            break;
-        case REGISTERING:
-            return {...state, registering: true};
-            break;
+        // case REGISTER:
+        //     return {...state, registred: true};
+        //     break;
+        // case LOGINPROCESSING:
+        //     return {...state, loginProcessing: true};
+        //     break;
+        // case REGISTERING:
+        //     return {...state, registering: true};
+        //     break;
         default:
             return state;
 
     }
 };
 
-export default reducer;
+export default person;
