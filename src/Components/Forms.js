@@ -1,37 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { addInfo } from '../actions/formActionType';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const forms = (props) => {
+function Forms(props){
 
-//   const handleState = (e) => {
-//      let input = ({ [e.target.name] : e.target.value})
-//      console.log("input",input)
-//     }
+    const [firstName, setFname] = useState({ firstName:'' })
+    const [lastName, setLname] = useState({ lastName:'' })
+    const [email, setEmail] = useState({ email:'' })
+    const [phone, setPhone] = useState({ phone: '' })
+    const [address, setAddress] = useState({ address: '' })
+    const [dob, setDob] = useState({ DOB:'' })
+    const [time, setTime] = useState({ time:'' })
+    const [url, setUrl] = useState({ url:'' })
+
+
+    // const [lastName, setLastName] = useState("")
+    //   const handleState = (e) => {
+    //  let input = ({ [e.target.name] : e.target.value})
+    //  console.log("input",input)
+    // }
+    // console.log("f",name);
 
     return(
         <form onSubmit={(e) => {
             e.preventDefault();
-            let firstName = e.target.FirstName.value;
-            let lastName = e.target.LastName.value;
-            let email = e.target.Email.value;
-            let phone = e.target.Phone.value;
-            let address = e.target.Address.value;
-            let dob = e.target.DOB.value;
-            let time = e.target.Time.value;
-            let Url = e.target.url.value;
-            // props.dispatch(addInfo(firstName))
-            props.dispatch(addInfo(firstName,lastName,email,phone,address,dob,time,Url));
-            e.target.FirstName.value=""
-            e.target.LastName.value=""
-            e.target.Email.value=""
-            e.target.Phone.value=""
-            e.target.Address.value=""
-            e.target.DOB.value=""
-            e.target.Time.value=""
-            e.target.url.value=""
-
-            // console.log("####",firstName,lastName,email,phone,address,time,Url)
+            // props.dispatch(addInfo(name.firstName,name.lastName,name.email,name.phone,name.address,name.DOB,name.time,name.url));
+            props.dispatch(addInfo(
+                firstName.firstName,
+                lastName.lastName,
+                email.email,
+                phone.phone,
+                address.address,
+                dob.DOB,
+                time.time,
+                url.url
+                ));
         }}>
         <div className="container-fluid mt-2">
             <div className="row">
@@ -39,10 +43,10 @@ const forms = (props) => {
                 <div className="col-md-6">
                 <label>First Name</label>
                 <input 
-                type="text"
+                type="text"               
+                value={firstName.firstName}
                 className="form-control"
-                name="FirstName"
-                // onChange={handleState}
+                onChange={e => setFname({ firstName: e.target.value})}
                 />
                 </div>
 
@@ -53,8 +57,8 @@ const forms = (props) => {
                 <input 
                 type="text"
                 className="form-control"
-                name="LastName"
-                // onChange={handleState}
+                value={lastName.lastName}
+                onChange={e => setLname({ lastName: e.target.value })}
                 />
                 </div>
 
@@ -64,8 +68,8 @@ const forms = (props) => {
                 <input 
                 type="email"
                 className="form-control"
-                name="Email"
-                // onChange={handleState}
+                value={email.email}
+                onChange={e => setEmail({ email: e.target.value })}
                 />
                 </div>
 
@@ -75,8 +79,8 @@ const forms = (props) => {
                 <input 
                 type="tel"
                 className="form-control"
-                name="Phone"
-                // onChange={handleState}
+                value={phone.phone}
+                onChange={e => setPhone({ phone: e.target.value })}
                 />
                 </div>
 
@@ -87,8 +91,8 @@ const forms = (props) => {
                 <input 
                 type="text"
                 className="form-control"
-                name="Address"
-                // onChange={handleState}
+                value={address.address}
+                onChange={e => setAddress({ address: e.target.value })}
                 />
                 </div>
 
@@ -99,8 +103,8 @@ const forms = (props) => {
                 <input 
                 type="date"
                 className="form-control"
-                name="DOB"
-                // onChange={handleState}
+                value={dob.DOB}
+                onChange={e => setDob({ DOB: e.target.value })}
                 />
                 </div>
 
@@ -111,8 +115,8 @@ const forms = (props) => {
                 <input 
                 type="time"
                 className="form-control"
-                name="Time"
-                // onChange={handleState}
+                value={time.time}
+                onChange={e => setTime({ time: e.target.value })}
                 />
                 </div>
 
@@ -122,13 +126,15 @@ const forms = (props) => {
                 <input 
                 type="url"
                 className="form-control"
-                name="url"
+                value={url.url}
                 placeholder="Website url"
-                // onChange={handleState}
+                onChange={e => setUrl({ url: e.target.value })}
                 />
                 </div>
-                <button  className="btn btn-primary">Submit</button>
-
+                <button className="btn btn-primary">Submit</button>
+                <Link to = '/Dashboard'>
+                <button className="btn btn-primary">Dashboard</button>
+                </Link>
                 </div>
         
         </div>
@@ -136,4 +142,4 @@ const forms = (props) => {
     )
 }
 
-export default connect()(forms);
+export default connect()(Forms);

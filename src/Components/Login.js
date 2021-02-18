@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Login.css'
 // import { Link } from "react-router-dom";
 import NewsDetails from './NewsDetails';
+import Dashboard from './Dashboard';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { startlogin } from "../actions/personAction";
@@ -39,7 +40,7 @@ class Login extends Component {
             localStorage.setItem('newsdata', JSON.stringify(this.state.email));
             toast.success("success");
             setTimeout(() => {
-                this.props.history.push("/NewsDetails")
+                this.props.history.push("/Dashboard")
             }, 2000);
 
 
