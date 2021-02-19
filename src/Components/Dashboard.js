@@ -19,6 +19,18 @@ const Dashboard = (props) => {
             </button>
             </Link>
 
+            <Link to = '/FetchUser'>
+            <button type="button" className="btn btn-primary">
+                Fetchuser
+            </button>
+            </Link>
+
+            <Link to = '/Formikform'>
+            <button type="button" className="btn btn-primary">
+                FormikForm
+            </button>
+            </Link>
+
         </div>
     )
 }

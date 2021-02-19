@@ -8,6 +8,8 @@ import ListTodos from './Components/ListTodos';
 import Forms from './Components/Forms';
 import ListFormData from './Components/ListFormData';
 import Dashboard from './Components/Dashboard';
+import FetchUser from './Components/FetchUser';
+import FormikForm from './Components/FormikForm';
 
 function App(props) {
   console.log("props", props)
@@ -23,6 +25,8 @@ function App(props) {
         <Route path="/Forms" component={Forms} {...props} />
         <Route path="/ListFormData" component={ListFormData} {...props} />
         <Route path="/Dashboard" component={Dashboard} {...props} />
+        <Route path="/Fetchuser" component={FetchUser} {...props} />
+        <Route path="/Formikform" component={FormikForm} {...props} />
         <Redirect from="/" to="/login" />
 
       </Switch>
@@ -30,6 +34,7 @@ function App(props) {
       {/* <ListTodos /> */}
       {/* <Forms />
       <ListFormData /> */}
+      {/* <FetchUser /> */}
     </div>
   );
 }

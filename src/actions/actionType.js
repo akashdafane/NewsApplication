@@ -15,3 +15,7 @@ export function login1(data) {
 }
 
 
+
+export const LOADING = "LOADING";
+export const LOADING_SUCCESS = "LOADING_SUCCESS";
+export const LOADING_ERROR = "LOADING_ERROR";

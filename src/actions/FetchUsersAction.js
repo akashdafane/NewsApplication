@@ -1,18 +1,27 @@
 import Axios from 'axios';
-
+import { 
+    LOADING,
+    LOADING_SUCCESS,
+    LOADING_ERROR
+} from './actionType';
 
 
 export const FetchUsersAction = () => {
     return (dispatch) => {
-        dispatch(fetchUsersRequest)
+        dispatch({ type: LOADING });
         Axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(response => {
-            const users = response.data
-            dispatch(fetchUsersSuccess(users))
-        })
+        .then( response => {
+            console.log("1",response)
+            dispatch({
+                type: LOADING_SUCCESS,
+                response,
+            })
+        } )
         .catch( error => {
-            const errorMsg = error.message
-            dispatch(fetchUsersFailure(errorMsg))
+            dispatch({
+                type: LOADING_ERROR,
+                error
+            })
         })
     }
 }
