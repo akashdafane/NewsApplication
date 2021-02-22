@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addInfo } from '../actions/formActionType';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Forms(props){
 
+    const [formvalue, updateFormValues] = useState({});
     const [firstName, setFname] = useState({ firstName:'' })
     const [lastName, setLname] = useState({ lastName:'' })
     const [email, setEmail] = useState({ email:'' })
@@ -21,6 +22,20 @@ function Forms(props){
     //  console.log("input",input)
     // }
     // console.log("f",name);
+    // var s = props.userData
+
+//    useEffect(() => {
+//        const formdata = window.localStorage.getItem("persist:formReducer");
+//        const saveValue = JSON.parse(formdata);
+//        updateFormValues(saveValue.s, firstName,lastName )
+    //    setFname(saveValue.firstName)
+    //    setLname(saveValue.lastName)
+//    })
+
+//    useEffect(() => {
+//        const valuesTosave = { s}
+//        window.localStorage.setItem("persist:formReducer",(valuesTosave))
+//    })
 
     return(
         <form onSubmit={(e) => {
@@ -135,11 +150,19 @@ function Forms(props){
                 <Link to = '/Dashboard'>
                 <button className="btn btn-primary">Dashboard</button>
                 </Link>
+                <Link to = '/ListFormData'>
+                <button className="btn btn-primary">ListFormData</button>
+                </Link>
                 </div>
         
         </div>
         </form>
     )
 }
+
+// const mapStateToProps = (state) => ({
+//     userData: state.formReducer.inputData
+// })
+
 
 export default connect()(Forms);

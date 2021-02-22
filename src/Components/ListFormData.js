@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const ListFormData = (props) => {
     let a = props.userData
-    console.log("a",a)
+    // console.log("a",a)
     return (
         <div>
             <ul>
@@ -18,7 +18,7 @@ const ListFormData = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    userData: state.fromReducer.inputData
+    userData: state.formReducer.inputData
 })
 
 export default connect(mapStateToProps)(ListFormData)
