@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { addInfo } from '../actions/formActionType';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 
 function Forms(props){
-
+    
     const [formvalue, updateFormValues] = useState({});
     const [firstName, setFname] = useState({ firstName:'' })
     const [lastName, setLname] = useState({ lastName:'' })

@@ -3,6 +3,7 @@ import person from './personReducer';
 import todos from './todos';
 import formReducer from './formReducer';
 import fetchapireducer from './FetchApiReducer';
+import loginReducer from './loginReducer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     todos,
     formReducer,
     fetchapireducer,
+    loginReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer); 
