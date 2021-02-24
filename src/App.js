@@ -10,6 +10,7 @@ import ListFormData from './Components/ListFormData';
 import Dashboard from './Components/Dashboard';
 import FetchUser from './Components/FetchUser';
 import FormikForm from './Components/FormikForm';
+import FetchData from './Components/FetchData';
 import Routes from './Routers';
 
 function App(props) {
@@ -21,13 +22,14 @@ function App(props) {
 
         <Route path="/login" component={Login} {...props} />
         <Route path="/NewsDetails" component={NewsDetails} {...props} />
-        <Route path="/AddTodos" component={AddTodos} {...props} /> 
+        <Route path="/AddTodos" component={AddTodos} {...props} />
         <Route path="/ListTodos" component={ListTodos} {...props} />
         <Route path="/Forms" component={Forms} {...props} />
         <Route path="/ListFormData" component={ListFormData} {...props} />
         <Route path="/Dashboard" component={Dashboard} {...props} />
         <Route path="/Fetchuser" component={FetchUser} {...props} />
         <Route path="/Formikform" component={FormikForm} {...props} />
+        <Route path="/FetchData" component={FetchData} {...props} />
         {/* <Route path="/Routes" component={Routes} /> */}
         <Redirect from="/" to="/login" />
 

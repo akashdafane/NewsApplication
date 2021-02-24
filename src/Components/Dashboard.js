@@ -29,6 +29,12 @@ const Dashboard = (props) => {
             </button>
             </Link>
 
+            <Link to='/FetchData'>
+                <button type="button" className="btn btn-primary">
+                FetchData
+            </button>
+            </Link>
+
 
             <button type="button" className="btn btn-danger">
                 Logout
