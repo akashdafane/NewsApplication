@@ -11,7 +11,10 @@ const FetchData = (props) => {
     const [users, setUsers] = useState(items.data.slice(0, 10));
     const [searchTerm, setSearchTerm] = useState('')
     // const [login, setLogin] = useState(false)
-    
+    // const [data, setData] = useState()
+    // const []
+    const [filtering, setFiltering] = useState('')
+    const [sorting, setSorting] = useState(users)
     const [pageNumber, setPageNumber] = useState(0)
     const usersPerPage = 5
     const pagesVisited = pageNumber * usersPerPage
@@ -20,32 +23,57 @@ const FetchData = (props) => {
     const displayUsers = users
         .slice(pagesVisited, pagesVisited + usersPerPage)
 
-        const data1 = _.sortBy(displayUsers, ['type', 'name'])
-        const [data, setData] = useState({'data':data1});
+    // const data1 = _.sortBy(displayUsers, ['type', 'name'])
+    // const [data, setData] = useState({ 'data': data1 });
 
     const changePage = ({ selected }) => {
-        console.log("count",selected)
+        console.log("count", selected)
         setPageNumber(selected)
 
     }
 
     const Ascending = () => {
-        // var data = ;
-        // console.log("asc", data)
-        setData({ data:_.sortBy(displayUsers, ['type', 'name']) })
+
+        console.log("asc", sorting.sorting)
+        setSorting({ sorting: _.sortBy(displayUsers, ['type', 'name']) })
+        // setLogin({ login: false })
+
     }
-    console.log("data1",data)
+    // console.log("data1", data)
 
     const Descending = () => {
+        setSorting({ sorting: _.sortBy(displayUsers, ['type', 'name']).reverse() })
         // var data = _.sortBy(displayUsers, ['type', 'name']).reverse();
-        // console.log("desc", data)
+        console.log("desc", data)
         // setLogin({ login: false })
-        setData({ data:_.sortBy(displayUsers, ['type', 'name']).reverse() })
+        // setData({ data: _.sortBy(displayUsers, ['type', 'name']).reverse() })
     }
 
     // var data = data
-    // var data = _.sortBy(displayUsers, ['type', 'name']);
+    var data = _.sortBy(displayUsers, ['type', 'name']);
+    console.log("Data", data)
 
+    // const filters = () => {
+    //     data.filter((val) => {
+    //         if (searchTerm == "") {
+    //             return setFiltering(filtering)
+    //         } else if (val.address.city.toLowerCase().includes(searchTerm.toLowerCase())) {
+    //             return setFiltering(filtering)
+    //         }
+    //         console.log("f",filtering)
+    //     })
+    // }
+
+    const handleChange = event => {
+        setFiltering({ filtering: event.target.value })
+    }
+
+    // const { filtering, data } = state;
+    // const lowercasedFilter = filtering.toLowerCase();
+    // const filteredData = data.filter(item => {
+    //     return Object.keys(item).some(key =>
+    //         item[key].toLowerCase.includes(lowercasedFilter))
+    // })
 
     return (
         <div className="container-fluid">
@@ -57,9 +85,11 @@ const FetchData = (props) => {
                         placeholder="Search by city..."
                         onChange={event => { setSearchTerm(event.target.value) }}
                     /><br></br>
+                    {/* <input value={filtering} onChange={handleChange} /> */}
                 </div>
                 <div className="col-md-4">
-                    <button type="button" onClick={Ascending} className="btn btn-primary">asc</button>
+                    <button type="button" onClick={Ascending}
+                        className="btn btn-primary">asc</button>
                 </div>
                 <div className="col-md-4 ">
                     <button type="button" onClick={Descending} className="btn btn-primary">desc</button>
@@ -77,14 +107,22 @@ const FetchData = (props) => {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* {filteredData.map(item => (
+                        <div key={item.id}>
+                            <div>
+                                {item.name}
+                            </div>
+                        </div>
+                    ))} */}
                     {
-                        data.data.filter((val) => {
-                            if (searchTerm == "") {
-                                return val
-                            } else if (val.address.city.toLowerCase().includes(searchTerm.toLowerCase())) {
-                                return val
-                            }
-                        })
+                        sorting && sorting.sorting && sorting.sorting.
+                            filter((val) => {
+                                if (searchTerm == "") {
+                                    return val
+                                } else if (val.address.city.toLowerCase().includes(searchTerm.toLowerCase())) {
+                                    return val
+                                }
+                            })
                             .map((user, i) => (
                                 <tr>
                                     <th scope="row">{i}</th>
@@ -125,4 +163,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(FetchData) 
+export default connect(mapStateToProps)(FetchData)
