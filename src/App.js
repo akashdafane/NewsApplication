@@ -12,6 +12,7 @@ import FetchUser from './Components/FetchUser';
 import FormikForm from './Components/FormikForm';
 import FetchData from './Components/FetchData';
 import Routes from './Routers';
+import Logout from './Components/Logout';
 
 function App(props) {
   console.log("props", props)
@@ -30,6 +31,7 @@ function App(props) {
         <Route path="/Fetchuser" component={FetchUser} {...props} />
         <Route path="/Formikform" component={FormikForm} {...props} />
         <Route path="/FetchData" component={FetchData} {...props} />
+        <Route path="/Logout" component={Logout} {...props} />
         {/* <Route path="/Routes" component={Routes} /> */}
         <Redirect from="/" to="/login" />
 

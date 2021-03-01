@@ -1,8 +1,26 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { useState } from 'react';
 
 const Dashboard = (props) => {
-    
+    const {items} = props.items
+    const data = props
+    // const [loggedIn] = useState(loggedIn)
+    const token  = localStorage.getItem("token")
+
+    var loggedIn = true
+    if(token == null){
+        loggedIn = false
+    }
+    // localStorage.removeItem("token")
+
+
+    console.log("dashboard",data)
     return (
+        <>
+            {
+                !loggedIn && <Redirect to="/ login"/>
+            }
         <div>
             <h1>Dashboard</h1>
             <Link to='/AddTodos'>
@@ -31,18 +49,28 @@ const Dashboard = (props) => {
 
             <Link to='/FetchData'>
                 <button type="button" className="btn btn-primary">
-                FetchData
+                    FetchData
             </button>
             </Link>
 
-
+            <Link to="/Logout">
             <button type="button" className="btn btn-danger">
                 Logout
             </button>
+            </Link>
 
         </div>
+        </>
     )
 }
 
+const mapStateToProps = state => {
+    const { fetchapireducer } = state;
+    return {
+        loading: fetchapireducer.loading,
+        items: fetchapireducer.data,
+        error: fetchapireducer.error
+    };
+};
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard) ;
