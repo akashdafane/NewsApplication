@@ -53,6 +53,12 @@ const Dashboard = (props) => {
             </button>
             </Link>
 
+            <Link to='/Lodash'>
+                <button type="button" className="btn btn-primary">
+                    Lodash
+            </button>
+            </Link>
+
             <Link to="/Logout">
             <button type="button" className="btn btn-danger">
                 Logout

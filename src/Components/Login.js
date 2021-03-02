@@ -50,10 +50,13 @@ const Login = (props) => {
     return (
         <>
             {
-            loggedIn &&  setTimeout(() => {
-                toast.success("success");
-                <Redirect to="/Dashboard" />
-            }, 2000) 
+            loggedIn 
+            &&  
+            // setTimeout(() => {
+            //     toast.success("success");
+            // }, 2000) 
+            <Redirect to="/Dashboard" />
+
             }
 
             <div className="container-fluid">

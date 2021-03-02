@@ -4,6 +4,7 @@ import rootReducer from './reducers/index';
 import { persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import formReducer from './reducers/formReducer';
 
 
 
@@ -21,6 +22,14 @@ const store = createStore(
     
     
 );
+
+store.subscribe(()=>{
+    console.log('state updated');
+    console.log("store", store.getState());
+})
+
+
+
 
 const persistor = persistStore(store);
 
