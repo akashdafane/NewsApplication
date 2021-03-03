@@ -1,26 +1,29 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import TableData from './TableData';
+import { useSelector } from 'react-redux';
 
 const FetchData = (props) => {
-    const { items } = props;
+    // const { items } = props;
+    const userData = useSelector(state => state.fetchapireducer.data.data)
+    console.log("userData",userData)
     return (
         <Fragment>
             <div className="container px-2">
-                <TableData data={items.data} itemsPerPage={5} />
+                <TableData data={data} itemsPerPage={5} />
             </div>
         </Fragment>
 
     )
 }
 
-const mapStateToProps = state => {
-    const { fetchapireducer } = state;
-    return {
-        loading: fetchapireducer.loading,
-        items: fetchapireducer.data,
-        error: fetchapireducer.error
-    };
-};
+// const mapStateToProps = state => {
+//     const { fetchapireducer } = state;
+//     return {
+//         loading: fetchapireducer.loading,
+//         items: fetchapireducer.data,
+//         error: fetchapireducer.error
+//     };
+// };
 
-export default connect(mapStateToProps)(FetchData)
+export default FetchData;
