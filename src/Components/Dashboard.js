@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { useState } from 'react';
 
 const Dashboard = (props) => {
-    const {items} = props.items
+    // const { items } = props.items
     const data = props
     // const [loggedIn] = useState(loggedIn)
     const token  = localStorage.getItem("token")
@@ -59,6 +59,18 @@ const Dashboard = (props) => {
             </button>
             </Link>
 
+            <Link to="/Increment">
+            <button type="button" className="btn btn-primary">
+                Increment
+            </button>
+            </Link>
+
+            <Link to="/UserFilter">
+            <button type="button" className="btn btn-primary">
+            UserFilter
+            </button>
+            </Link>
+
             <Link to="/Logout">
             <button type="button" className="btn btn-danger">
                 Logout
@@ -71,11 +83,11 @@ const Dashboard = (props) => {
 }
 
 const mapStateToProps = state => {
-    const { fetchapireducer } = state;
+    const { FetchApiReducer } = state;
     return {
-        loading: fetchapireducer.loading,
-        items: fetchapireducer.data,
-        error: fetchapireducer.error
+        loading: FetchApiReducer.loading,
+        items: FetchApiReducer.data,
+        error: FetchApiReducer.error
     };
 };
 

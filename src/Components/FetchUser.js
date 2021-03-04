@@ -70,11 +70,11 @@ const FetchUser = (props) => {
 }
 
 const mapStateToProps = state => {
-    const { fetchapireducer } = state;
+    const { FetchApiReducer } = state;
     return {
-        loading: fetchapireducer.loading,
-        items: fetchapireducer.data,
-        error: fetchapireducer.error
+        loading: FetchApiReducer.loading,
+        items: FetchApiReducer.data,
+        error: FetchApiReducer.error
     };
 };
 

@@ -23,10 +23,10 @@ const store = createStore(
     
 );
 
-store.subscribe(()=>{
-    console.log('state updated');
-    console.log("store", store.getState());
-})
+// store.subscribe(()=>{
+//     console.log('state updated');
+//     console.log("store", store.getState());
+// })
 
 
 

@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 
 const FetchData = (props) => {
     // const { items } = props;
-    const userData = useSelector(state => state.fetchapireducer.data.data)
+    const userData = useSelector((state) => state.FetchApiReducer.data.data)
     console.log("userData",userData)
     return (
         <Fragment>
             <div className="container px-2">
-                <TableData data={data} itemsPerPage={5} />
+                <TableData data={userData} itemsPerPage={5} />
             </div>
         </Fragment>
 
