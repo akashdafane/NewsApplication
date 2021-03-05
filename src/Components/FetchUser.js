@@ -1,15 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import MaterialTable from 'material-table';
 import _ from 'lodash';
 
+
 const FetchUser = (props) => {
-    const { items } = props;
-    // console.log("items", items)
-    let a = items;
-    // console.log("a", a)
-    // console.log("sort", _.sortBy(a.data, 'name'))
-    // console.log("city",a.data[0].address.city)
+
+    const userData = useSelector(state => state.fetchApiReducer.items.data)
+
+
     const { useState } = React;
 
     const [columns] = useState([
@@ -33,7 +32,7 @@ const FetchUser = (props) => {
             <MaterialTable
                 title="User Info"
                 columns={columns}
-                data={items.data}
+                data={userData}
                 editable={{
                     // onRowAdd: newData =>
                     //     new Promise((resolve, reject) => {
@@ -69,13 +68,4 @@ const FetchUser = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    const { FetchApiReducer } = state;
-    return {
-        loading: FetchApiReducer.loading,
-        items: FetchApiReducer.data,
-        error: FetchApiReducer.error
-    };
-};
-
-export default connect(mapStateToProps)(FetchUser) 
+export default FetchUser 

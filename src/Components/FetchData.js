@@ -1,12 +1,9 @@
 import React, { useState, Fragment } from 'react';
-import { connect } from 'react-redux';
 import TableData from './TableData';
 import { useSelector } from 'react-redux';
 
-const FetchData = (props) => {
-    // const { items } = props;
-    const userData = useSelector((state) => state.FetchApiReducer.data.data)
-    console.log("userData",userData)
+const FetchData = () => {
+    const userData = useSelector((state) => state.fetchApiReducer.items.data)
     return (
         <Fragment>
             <div className="container px-2">
@@ -16,14 +13,5 @@ const FetchData = (props) => {
 
     )
 }
-
-// const mapStateToProps = state => {
-//     const { fetchapireducer } = state;
-//     return {
-//         loading: fetchapireducer.loading,
-//         items: fetchapireducer.data,
-//         error: fetchapireducer.error
-//     };
-// };
 
 export default FetchData;

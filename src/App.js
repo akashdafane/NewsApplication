@@ -16,6 +16,7 @@ import Logout from './Components/Logout';
 import Increment from './Components/Increment';
 import UserFilter from './Components/UserFilter';
 import Demo from './Components/Demo';
+import Posts from './Components/Posts';
 
 function App(props) {
   console.log("props", props)
@@ -37,6 +38,7 @@ function App(props) {
         <Route path="/Logout" component={Logout} {...props} />
         <Route path="/Increment" component={Increment}{...props} />
         <Route path="/UserFilter" component={UserFilter} {...props} />
+        <Route path="/Posts" component={Posts} {...props} />
         <Route path="/Demo" component={Demo} {...props}/>
         {/* <Route path="/Routes" component={Routes} /> */}
         <Redirect from="/" to="/login" />

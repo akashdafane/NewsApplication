@@ -2,11 +2,12 @@ import { combineReducers } from 'redux';
 import person from './personReducer';
 import todos from './todos';
 import formReducer from './formReducer';
-import FetchApiReducer from './FetchApiReducer';
+import fetchApiReducer from './fetchApiReducer';
 import loginReducer from './loginReducer';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import IncrementReducer from './IncrementReducer'
+import postReducer from './postReducer';
 
 const persistConfig = {
     key: 'formReducer',
@@ -18,9 +19,10 @@ const rootReducer = combineReducers({
     person,
     todos,
     formReducer,
-    FetchApiReducer,
+    fetchApiReducer,
     loginReducer,
     IncrementReducer,
+    postReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer); 
