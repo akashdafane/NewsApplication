@@ -1,11 +1,13 @@
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { useState } from 'react';
 
 const Dashboard = (props) => {
     // const { items } = props.items
     // const data = props
     // const [loggedIn] = useState(loggedIn)
+    // const login = useSelector(state => state.loginReducer.loginData)
+    // console.log("login", login)
     const token = localStorage.getItem("token")
 
     var loggedIn = true

@@ -17,8 +17,12 @@ import Increment from './Components/Increment';
 import UserFilter from './Components/UserFilter';
 import Demo from './Components/Demo';
 import Posts from './Components/Posts';
+// import React, { Suspense, lazy } from 'react';
+
+// const Dashboard = lazy(() => import('./Components/Dashboard'));
 
 function App(props) {
+  
   console.log("props", props)
   return (
     <div classNameName="App">

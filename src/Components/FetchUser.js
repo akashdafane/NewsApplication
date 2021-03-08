@@ -5,7 +5,9 @@ import _ from 'lodash';
 
 
 const FetchUser = (props) => {
-
+    // useEffect(()=>{
+    //     filterUserData();
+    // })
     const userData = useSelector(state => state.fetchApiReducer.items.data)
 
 

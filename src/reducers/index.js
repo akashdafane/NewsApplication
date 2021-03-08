@@ -8,6 +8,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import IncrementReducer from './IncrementReducer'
 import postReducer from './postReducer';
+import UserFilterReducer from './UserFilterReducer'
 
 const persistConfig = {
     key: 'formReducer',
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     loginReducer,
     IncrementReducer,
     postReducer,
+    UserFilterReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer); 

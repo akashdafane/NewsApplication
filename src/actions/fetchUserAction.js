@@ -34,15 +34,42 @@ import {
     FETCH_USER_REQUEST,
     FETCH_USER_SUCCESS,
     FETCH_USER_FAILUER,
+    FILTER_USER_DATA,
+    FETCH_API_SUCCESS,
 } from './types'
+
 
 export function fetchUserAction(){
     return function(dispatch){
         Axios('https://jsonplaceholder.typicode.com/users')
         // .then(res => res.json())
-        .then(fetchApiReducer => dispatch({
+        .then(response => dispatch({
             type: FETCH_USER_SUCCESS,
-            payload: fetchApiReducer
+            payload: response
         }))
     }
 }
+
+export function fetchApiAction(){
+    return function(dispatch){
+        Axios('https://jsonplaceholder.typicode.com/users')
+        // .then(res => res.json())
+        .then(res => dispatch({
+            type: FETCH_API_SUCCESS,
+            payload: res
+        }))
+    }
+}
+
+
+
+// export function filterUserData () {
+//     return function(dispatch){
+//         Axios('https://jsonplaceholder.typicode.com/users')
+//         // .then(res => res.json())
+//         .then(res => dispatch({
+//             type: FILTER_USER_DATA,
+//             payload: res
+//         }))
+//     }
+// }
