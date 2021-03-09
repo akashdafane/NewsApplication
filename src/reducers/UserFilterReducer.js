@@ -10,7 +10,7 @@
 // } from '../actions/UserFilterAction'
 
 // const initialState = {
-//     appliedFilters: []
+//     userInfo: []
 // };
 
 // const UserFilterReducer = (state = initialState, action) => {
@@ -22,8 +22,8 @@
 //                 sortDesc(state.filteredProducts, 'name');
 
 //             sortByAlphabetState.filteredProducts = sortedAlphabetArr;
-//             sortByAlphabetState.appliedFilters = addFilterIfNotExists(SORT_BY_ALPHABET, sortByAlphabetState.appliedFilters);
-//             sortByAlphabetState.appliedFilters = removeFilter(SORT_BY_ALPHABET, sortByAlphabetState.appliedFilters);
+//             sortByAlphabetState.userInfo = addFilterIfNotExists(SORT_BY_ALPHABET, sortByAlphabetState.userInfo);
+//             sortByAlphabetState.userInfo = removeFilter(SORT_BY_ALPHABET, sortByAlphabetState.userInfo);
 
 //             return sortByAlphabetState;
 //         // case SORT_BY_PRICE:
@@ -33,8 +33,8 @@
 //         sortDesc(state.filteredProducts, 'price');
 
 //     sortByPriceState.filteredProducts = sortedPriceArr;
-//     sortByPriceState.appliedFilters = addFilterIfNotExists(SORT_BY_ALPHABET, sortByPriceState.appliedFilters);
-//     sortByPriceState.appliedFilters = removeFilter(SORT_BY_PRICE, sortByPriceState.appliedFilters);
+//     sortByPriceState.userInfo = addFilterIfNotExists(SORT_BY_ALPHABET, sortByPriceState.userInfo);
+//     sortByPriceState.userInfo = removeFilter(SORT_BY_PRICE, sortByPriceState.userInfo);
 
 //     return sortByPriceState;
 // case FILTER_BY_PRICE:
@@ -48,19 +48,19 @@
 //             product.designer.toLowerCase().includes(value);
 //     });
 
-//     let appliedFilters = state.appliedFilters;
+//     let userInfo = state.userInfo;
 
 //     if (value) {
-//         appliedFilters = addFilterIfNotExists(FILTER_BY_VALUE, appliedFilters);
+//         userInfo = addFilterIfNotExists(FILTER_BY_VALUE, userInfo);
 
 //         newState.filteredProducts = filteredValues;
 //         newState.filteredCount = newState.filteredProducts.length;
 //         newState.filteredPages = Math.ceil(newState.filteredCount / newState.countPerPage);
 
 //     } else {
-//         appliedFilters = removeFilter(FILTER_BY_VALUE, appliedFilters);
+//         userInfo = removeFilter(FILTER_BY_VALUE, userInfo);
 
-//         if (appliedFilters.length === 0) {
+//         if (userInfo.length === 0) {
 //             newState.filteredProducts = newState.products;
 //             newState.filteredCount = newState.filteredProducts.length;
 //             newState.filteredPages = Math.ceil(newState.filteredCount / newState.countPerPage);
@@ -161,17 +161,17 @@
 //     })
 // }
 
-// function addFilterIfNotExists(filter, appliedFilters) {
-//     let index = appliedFilters.indexOf(filter);
-//     if (index === -1) appliedFilters.push(filter);
+// function addFilterIfNotExists(filter, userInfo) {
+//     let index = userInfo.indexOf(filter);
+//     if (index === -1) userInfo.push(filter);
 
-//     return appliedFilters;
+//     return userInfo;
 // }
 
-// function removeFilter(filter, appliedFilters) {
-//     let index = appliedFilters.indexOf(filter);
-//     appliedFilters.splice(index, 1);
-//     return appliedFilters;
+// function removeFilter(filter, userInfo) {
+//     let index = userInfo.indexOf(filter);
+//     userInfo.splice(index, 1);
+//     return userInfo;
 // }
 
 // export default UserFilterReducer;
@@ -248,10 +248,11 @@
 import * as all from '../actions/types';
 import { FETCH_API_SUCCESS } from '../actions/types'
 import generate from "../DemoApiData.js/Data";
-
+import { sortAsc,sortDesc,addFilterIfNotExists,removeFilter } from '../DemoApiData.js/Util';
 
 const initialState = {
     appliedFilters: [],
+    userInfo:[],
 }
 
 
@@ -270,34 +271,18 @@ const UserFilterReducer = (state = initialState, action) => {
                     : sortDesc(state.filteredProducts, "name");
 
             sortByAlphabetState.filteredProducts = sortedAlphabetArr;
-            sortByAlphabetState.appliedFilters = addFilterIfNotExists(
+            sortByAlphabetState.userInfo = addFilterIfNotExists(
                 all.SORT_BY_ALPHABET,
-                sortByAlphabetState.appliedFilters
+                sortByAlphabetState.userInfo
             );
-            sortByAlphabetState.appliedFilters = removeFilter(
+            sortByAlphabetState.userInfo = removeFilter(
                 all.SORT_BY_ALPHABET,
-                sortByAlphabetState.appliedFilters
+                sortByAlphabetState.userInfo
             );
 
             return sortByAlphabetState;
         case all.SORT_BY_PRICE:
-            let sortByPriceState = Object.assign({}, state);
-            let sortedPriceArr =
-                action.payload.direction === "asc"
-                    ? sortAsc(state.filteredProducts, "price")
-                    : sortDesc(state.filteredProducts, "price");
-
-            sortByPriceState.filteredProducts = sortedPriceArr;
-            sortByPriceState.appliedFilters = addFilterIfNotExists(
-                all.SORT_BY_ALPHABET,
-                sortByPriceState.appliedFilters
-            );
-            sortByPriceState.appliedFilters = removeFilter(
-                all.SORT_BY_PRICE,
-                sortByPriceState.appliedFilters
-            );
-
-            return sortByPriceState;
+            ;
         case all.FILTER_BY_PRICE:
             //filter by price
             return state;
@@ -311,10 +296,10 @@ const UserFilterReducer = (state = initialState, action) => {
                 );
             });
 
-            let appliedFilters = state.appliedFilters;
+            let userInfo = state.userInfo;
 
             if (value) {
-                appliedFilters = addFilterIfNotExists(all.FILTER_BY_VALUE, appliedFilters);
+                userInfo = addFilterIfNotExists(all.FILTER_BY_VALUE, userInfo);
 
                 newState.filteredProducts = filteredValues;
                 newState.filteredCount = newState.filteredProducts.length;
@@ -322,9 +307,9 @@ const UserFilterReducer = (state = initialState, action) => {
                     newState.filteredCount / newState.countPerPage
                 );
             } else {
-                appliedFilters = removeFilter(all.FILTER_BY_VALUE, appliedFilters);
+                userInfo = removeFilter(all.FILTER_BY_VALUE, userInfo);
 
-                if (appliedFilters.length === 0) {
+                if (userInfo.length === 0) {
                     newState.filteredProducts = newState.products;
                     newState.filteredCount = newState.filteredProducts.length;
                     newState.filteredPages = Math.ceil(
@@ -340,7 +325,7 @@ const UserFilterReducer = (state = initialState, action) => {
             //round up
             let totalPages = Math.ceil(count / countPerPage);
 
-            let products = appliedFilters.data;
+            let products = userInfo.data;
             return {
                 ...state,
                 products,
@@ -419,35 +404,3 @@ const UserFilterReducer = (state = initialState, action) => {
 
 export default UserFilterReducer;
 
-function sortAsc(arr, field) {
-    return arr.sort(function (a, b) {
-        if (a[field] > b[field]) return 1;
-
-        if (b[field] > a[field]) return -1;
-
-        return 0;
-    });
-}
-
-function sortDesc(arr, field) {
-    return arr.sort(function (a, b) {
-        if (a[field] > b[field]) return -1;
-
-        if (b[field] > a[field]) return 1;
-
-        return 0;
-    });
-}
-
-function addFilterIfNotExists(filter, appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
-    if (index === -1) appliedFilters.push(filter);
-
-    return appliedFilters;
-}
-
-function removeFilter(filter, appliedFilters) {
-    let index = appliedFilters.indexOf(filter);
-    appliedFilters.splice(index, 1);
-    return appliedFilters;
-}
