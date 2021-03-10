@@ -18,15 +18,15 @@ export function sortDesc(arr, field) {
     });
 }
 
-export function addFilterIfNotExists(filter, userInfo) {
-    let index = userInfo.indexOf(filter);
-    if (index === -1) userInfo.push(filter);
+export function addFilterIfNotExists(filter, appliedFilters) {
+    let index = appliedFilters.indexOf(filter);
+    if (index === -1) appliedFilters.push(filter);
 
-    return userInfo;
+    return appliedFilters;
 }
 
-export function removeFilter(filter, userInfo) {
-    let index = userInfo.indexOf(filter);
-    userInfo.splice(index, 1);
-    return userInfo;
+export function removeFilter(filter, appliedFilters) {
+    let index = appliedFilters.indexOf(filter);
+    appliedFilters.splice(index, 1);
+    return appliedFilters;
 }
