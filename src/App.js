@@ -17,6 +17,11 @@ import Increment from './Components/Increment';
 import UserFilter from './Components/UserFilter';
 import Demo from './Components/Demo';
 import Posts from './Components/Posts';
+// import SectionA from './Components/SectionwiseAverage';
+import SectionwiseAverage from './Components/SectionwiseAverage'
+import SectionB from './Components/SectionB';
+import LocalStorage from './Components/LocalStorage';
+// import AverageofSectionB from './Components/AverageofSectionB';
 // import React, { Suspense, lazy } from 'react';
 
 // const Dashboard = lazy(() => import('./Components/Dashboard'));
@@ -43,7 +48,11 @@ function App(props) {
         <Route path="/Increment" component={Increment}{...props} />
         <Route path="/UserFilter" component={UserFilter} {...props} />
         <Route path="/Posts" component={Posts} {...props} />
+        <Route path="/SectionwiseAverage" component={SectionwiseAverage} {...props} />
         <Route path="/Demo" component={Demo} {...props}/>
+        <Route path="/SectionB" component={SectionB} {...props} />
+        <Route path="/LocalStorage" component={LocalStorage} {...props} />
+        {/* <Route path="/AverageofSectionB" component={AverageofSectionB} {...props} /> */}
         {/* <Route path="/Routes" component={Routes} /> */}
         <Redirect from="/" to="/login" />
 

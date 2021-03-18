@@ -30,3 +30,26 @@ export function removeFilter(filter, appliedFilters) {
     appliedFilters.splice(index, 1);
     return appliedFilters;
 }
+
+
+export const average = (subjects) => {
+    var sum = 0;
+    subjects.forEach((sub) => (sum = sum + sub.mark));
+    return sum / subjects.length;
+};
+
+
+export const addition = (subjects) => {
+    var sum = 0;
+    subjects.forEach((sub) => (sum = sum + sub.mark));
+    return sum
+}
+
+// export const getMax = (arr, prop) => {
+//     var max;
+//     for (var i=0 ; i<arr.length ; i++) {
+//         if (max == null || parseInt(arr[i][prop]) > parseInt(max[prop]))
+//             max = arr[i];
+//     }
+//     return max;
+// }

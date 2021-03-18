@@ -79,6 +79,24 @@ const Dashboard = (props) => {
             </button>
                 </Link>
 
+                <Link to="/SectionwiseAverage">
+                    <button type="button" className="btn btn-primary">
+                        SectionwiseAverage
+            </button>
+                </Link>
+
+                <Link to="/SectionB">
+                    <button type="button" className="btn btn-primary">
+                        SectionB
+            </button>
+                </Link>
+
+                <Link to="/LocalStorage">
+                    <button type="button" className="btn btn-primary">
+                        LocalStorage
+            </button>
+                </Link>
+
                 <Link to="/Logout">
                     <button type="button" className="btn btn-danger">
                         Logout
