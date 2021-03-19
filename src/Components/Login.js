@@ -15,7 +15,6 @@ import Dashboard from './Dashboard';
 
 const Login = (props) => {
 
-
     const [email, setEmail] = useState({ email: '' })
     const [password, setPassword] = useState({ password: '' })
     const [loggedIn, setLoggedIn] = useState()
@@ -26,7 +25,7 @@ const Login = (props) => {
             email.email,
             password.password
         ));
-        // console.log("#####", props.loginData)
+        console.log("#####", props.loginData)
         // console.log("deng", props.loginData[0].email)
 
         if (email.email === "admin" && password.password === "admin1") {

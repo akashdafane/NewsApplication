@@ -4,7 +4,7 @@ import Button from './Common/Button'
 const LocalStorage = () => {
 
     const setItem = () => {
-        localStorage.setItem("Author", "Item Set")
+        localStorage.setItem("Author", "Token")
     }
     const getItem = () => {
         console.log(localStorage.getItem("Author"));
@@ -31,13 +31,14 @@ const LocalStorage = () => {
                 className={"btn btn-success"}
                 onClick={getItem}
             />
-
+            
             <Button
                 type={"button"}
                 label={"Remove-Item"}
                 className={"btn btn-success"}
                 onClick={removeItem}
             />
+            <div className='con-md-4 '>{` ${localStorage.getItem("Author")}`}</div>
         </div>
     )
 }

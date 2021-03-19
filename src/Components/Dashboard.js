@@ -96,6 +96,17 @@ const Dashboard = (props) => {
                         LocalStorage
             </button>
                 </Link>
+                <Link to="/Dbounce">
+                    <button type="button" className="btn btn-primary">
+                        Dbounce
+            </button>
+                </Link>
+
+                <Link to="/ParentComponent">
+                    <button type="button" className="btn btn-primary">
+                        ParentComponent
+            </button>
+                </Link>
 
                 <Link to="/Logout">
                     <button type="button" className="btn btn-danger">
