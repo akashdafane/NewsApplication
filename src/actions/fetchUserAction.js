@@ -30,6 +30,7 @@
 // export default FetchUsersAction;
 
 import Axios from 'axios';
+import {get} from 'lodash';
 import { 
     FETCH_USER_REQUEST,
     FETCH_USER_SUCCESS,
@@ -73,3 +74,21 @@ export function fetchApiAction(){
 //         }))
 //     }
 // }
+
+// export function setSortParams(sortKey, sortType = "string") {
+//     return (dispatch, getState) => {
+//       const { sortParams } = getState().app;
+//       const order = get(sortParams, "order");
+  
+//       dispatch({
+//         type: types.SET_SORT_PARAMS,
+//         payload: {
+//           data: {
+//             key: sortKey,
+//             order: order === "desc" ? "asc" : "desc",
+//             type: sortType
+//           }
+//         }
+//       });
+//     };
+//   }

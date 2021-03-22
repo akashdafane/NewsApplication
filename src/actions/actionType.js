@@ -39,11 +39,7 @@ export const sortByPrice = payload => ({
     payload
   });
   
-  export const sortByAlphabet = payload => ({
-    type: all.SORT_BY_ALPHABET,
-    payload
-  });
-  
+   
   export const loadData = payload => ({
     type: all.FETCH_API_SUCCESS,
     payload
@@ -58,3 +54,11 @@ export const sortByPrice = payload => ({
     type: all.LOAD_EXACT_PAGE,
     payload
   });
+
+
+  export const sortByAlphabet = payload => ({
+    type: all.SORT_BY_ALPHABET,
+    payload
+  });
+
+  
