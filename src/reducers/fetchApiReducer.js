@@ -3,6 +3,8 @@ import {
     FETCH_USER_SUCCESS,
     FETCH_USER_FAILUER,
     FILTER_USER_DATA,
+    SORT_BY_ASC,
+    SORT_BY_DESC
 } from '../actions/types'
 
 const initialState = {
@@ -22,6 +24,16 @@ export default function (state = initialState, action) {
                 ...state,
                 filteredItems: action.payload
             }
+        case SORT_BY_ASC:
+            return{
+                ...state,
+                filteredItems: action.payload
+            }
+            case SORT_BY_DESC:
+                return{
+                    ...state,
+                    filteredItems: action.payload
+                }
         default:
             return state;
     }

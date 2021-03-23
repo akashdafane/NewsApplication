@@ -16,4 +16,7 @@ export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_VALUE = "FILTER_BY_VALUE";
 export const LOAD_NEW_PAGE = "LOAD_NEW_PAGE";
 export const LOAD_EXACT_PAGE = "LOAD_EXACT_PAGE";
+
+export const SORT_BY_ASC = "SORT_BY_ASC";
+export const SORT_BY_DESC = "SORT_BY_DESC";
 // const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";

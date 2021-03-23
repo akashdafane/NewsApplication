@@ -1,6 +1,9 @@
 // import Login from "../Components/Login";
 
-import * as all from './types'
+import * as all from './types';
+import _ from 'lodash';
+import {useSelector} from 'react-redux'
+
 
 export const LOGIN = "LOGIN";
 // export const REGISTER = "REGISTER";
@@ -54,11 +57,25 @@ export const sortByPrice = payload => ({
     type: all.LOAD_EXACT_PAGE,
     payload
   });
+  
 
-
-  export const sortByAlphabet = payload => ({
-    type: all.SORT_BY_ALPHABET,
+  export const sortByAsc = payload => ({
+    
+    type: all.SORT_BY_ASC,
     payload
+      
   });
 
+  export const sortByDesc = payload => ({
+    type: all.SORT_BY_DESC,
+    payload
+  });
   
+//   export function sortByAsc(){
+//     return function(dispatch){
+//         dispatch({
+//           type: all.SORT_BY_ASC,
+//           payload: _.sortBy(userData, ['name'])
+//         })
+//     }
+// }

@@ -191,72 +191,70 @@
 
 
 // import { Search } from '@material-ui/icons'
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import Input from '../Components/Common/Input'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Input from '../Components/Common/Input';
+import _ from 'lodash';
+import Button from './Common/Button';
+import {sortByAsc, sortByDesc} from '../actions/actionType';
+
 
 const UserFilter = () => {
-    const userData = useSelector((state) => state.fetchApiReducer.items.data)
-    const [search, setSearch] = useState("");
-    const [sort, setSort] = useState("");
-    const [data, setData] = useState([])
+  
+  const userData = useSelector((state) => state.fetchApiReducer.items.data)
+  const FilterData = useSelector((state) => state.fetchApiReducer.filteredItems)
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+  const [sorting, setSort] = useState("");
+  // const [data, setData] = useState("")
 
-    console.log("Ass", sort)
-    
-    const sortAscending = () => {
-        // const { data } = state;
-        data.sort((a, b) => a - b)    
-        setData({ data })
-      }
-    
-      const sortDescending = () => {
-        // const { data } = state;
-        data.sort((a, b) => a - b).reverse()
-        setData({ data })
-      }
-      useEffect(()=>{
-        // const { data } = state
-       const data = userData.map(p=>p.name)
-        setData(userData)
-      },[])
+  // console.log("Ass", FilterData)
 
-    // const searchSpace = (event) => {
-    //     let keyword = event.target.value;
-    //     setSearch(keyword)
-    // }
-    const items = userData.filter((data) => {
-        // debugger
-        if (search == "")
-            return data
-        else if (data.name.toLowerCase().includes(search.toLowerCase())) {
-            return data
-        }
+  const sortAsc = () => {
+    setSort(_.sortBy(userData, ['name']))
+    dispatch(sortByAsc(sorting))
+  }
 
-    }).map(data => {
-        return (
-            <div>
-                <ul>
-                    <li>{data.name}</li>
-                </ul>
-            </div>
-        )
-    })
+  const sortDescending = () => {
+    setSort(_.sortBy(userData, ['name']).reverse())
+    dispatch(sortByDesc(sorting))
+  }
 
-   
+  const items = FilterData && FilterData && FilterData.filter((data) => {
+    // debugger
+    if (search == "")
+      return data
+    else if (data.name.toLowerCase().includes(search.toLowerCase())) {
+      return data
+    }
 
+  }).map((data) => {
     return (
-        <div>
-            <Input type={"text"} className={"form-control"} placeholder={"Enter item to be searched"} onChange={(e) => setSearch(e)} />
-            {items}
-            <form class="form-inline">
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-                <select onChange={(e) => setSort(e.target.value)} className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                    <option selected>Choose...</option>
-                    <option value="Asc" onClick={sortAscending}>Asc</option>
-                    <option value="Desc" onClick={sortDescending}>Desc</option>
-                </select>
-            </form>
-            {/* <form >
+      <div>
+        <ul>
+          <li>{data.name}</li>
+        </ul>
+      </div>
+    )
+  })
+
+
+
+  return (
+    <div>
+      <Input type={"text"} className={"form-control"} placeholder={"Enter item to be searched"} onChange={(e) => setSearch(e)} />
+      <Button type={"button"} className={"btn btn-success"} label={"Asc"} onClick={sortAsc}/>
+      <Button type={"button"} className={"btn btn-success"} label={"Desc"} onClick={sortDescending}/>
+      {items}
+      {/* <form class="form-inline">
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
+        <select onChange={(e) => setSort(e.target.value)} className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+          <option selected>Choose...</option>
+          <option value="Asc" onClick={sortAscending}>Asc</option>
+          <option value="Desc" >Desc</option>
+        </select>
+      </form> */}
+      {/* <form >
           <label>
             Pick your favorite flavor:
             <select onChange={handleChange}>
@@ -268,8 +266,8 @@ const UserFilter = () => {
           </label>
           
         </form> */}
-        </div>
-    )
+    </div>
+  )
 }
 
 
