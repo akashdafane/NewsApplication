@@ -47,7 +47,7 @@ export function fetchUserAction(){
         // .then(res => res.json())
         .then(response => dispatch({
             type: FETCH_USER_SUCCESS,
-            payload: response
+            payload: response.data
         }))
     }
 }

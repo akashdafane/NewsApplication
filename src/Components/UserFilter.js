@@ -196,28 +196,36 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../Components/Common/Input';
 import _ from 'lodash';
 import Button from './Common/Button';
-import {sortByAsc, sortByDesc} from '../actions/actionType';
+import { sortByAsc, sortByDesc } from '../actions/actionType';
+import axios from 'axios';
+import { fetchUserAction } from '../actions/fetchUserAction';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+
 
 
 const UserFilter = () => {
-  
-  const userData = useSelector((state) => state.fetchApiReducer.items.data)
+
+  // const userData = useSelector((state) => state.fetchApiReducer.items.data)
   const FilterData = useSelector((state) => state.fetchApiReducer.filteredItems)
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
-  const [sorting, setSort] = useState("");
+  // const [sorting, setSort] = useState("");
   // const [data, setData] = useState("")
 
-  // console.log("Ass", FilterData)
+  // console.log("Ass", data.data)
+  useEffect(() => {
+    dispatch(fetchUserAction())
+  }, [])
 
   const sortAsc = () => {
-    setSort(_.sortBy(userData, ['name']))
-    dispatch(sortByAsc(sorting))
+    var temp1 = _.sortBy(FilterData, ['name'])
+    dispatch(sortByAsc(temp1))
   }
 
   const sortDescending = () => {
-    setSort(_.sortBy(userData, ['name']).reverse())
-    dispatch(sortByDesc(sorting))
+    var temp2 = _.sortBy(FilterData, ['name']).reverse()
+    dispatch(sortByDesc(temp2))
   }
 
   const items = FilterData && FilterData && FilterData.filter((data) => {
@@ -238,37 +246,17 @@ const UserFilter = () => {
     )
   })
 
-
-
   return (
     <div>
       <Input type={"text"} className={"form-control"} placeholder={"Enter item to be searched"} onChange={(e) => setSearch(e)} />
-      <Button type={"button"} className={"btn btn-success"} label={"Asc"} onClick={sortAsc}/>
-      <Button type={"button"} className={"btn btn-success"} label={"Desc"} onClick={sortDescending}/>
+      <Button type={"button"} className={"btn btn-success"} label={"Asc"} onClick={sortAsc} />
+      <Button type={"button"} className={"btn btn-success"} label={"Desc"} onClick={sortDescending} />
       {items}
-      {/* <form class="form-inline">
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-        <select onChange={(e) => setSort(e.target.value)} className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-          <option selected>Choose...</option>
-          <option value="Asc" onClick={sortAscending}>Asc</option>
-          <option value="Desc" >Desc</option>
-        </select>
-      </form> */}
-      {/* <form >
-          <label>
-            Pick your favorite flavor:
-            <select onChange={handleChange}>
-              <option selected>Choose</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-            </select>
-          </label>
-          
-        </form> */}
+      <Pagination count={5} color="primary" />
     </div>
   )
 }
+
 
 
 export default UserFilter;

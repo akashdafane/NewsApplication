@@ -4,7 +4,8 @@ import {
     FETCH_USER_FAILUER,
     FILTER_USER_DATA,
     SORT_BY_ASC,
-    SORT_BY_DESC
+    SORT_BY_DESC,
+    FETCH_API_SUCCESS
 } from '../actions/types'
 
 const initialState = {
@@ -14,12 +15,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_USER_SUCCESS:
+        case FETCH_API_SUCCESS:
             return {
                 ...state,
                 items: action.payload
             };
-        case FILTER_USER_DATA:
+        
+        case FETCH_USER_SUCCESS:
             return {
                 ...state,
                 filteredItems: action.payload
@@ -32,7 +34,7 @@ export default function (state = initialState, action) {
             case SORT_BY_DESC:
                 return{
                     ...state,
-                    filteredItems: action.payload
+                filteredItems: action.payload
                 }
         default:
             return state;

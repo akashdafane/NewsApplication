@@ -60,7 +60,6 @@ export const sortByPrice = payload => ({
   
 
   export const sortByAsc = payload => ({
-    
     type: all.SORT_BY_ASC,
     payload
       

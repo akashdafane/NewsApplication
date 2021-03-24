@@ -33,7 +33,7 @@ function App(props) {
   
   console.log("props", props)
   return (
-    <div classNameName="App">
+    <div className="App">
 
       <Switch>
 
