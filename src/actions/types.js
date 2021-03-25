@@ -19,4 +19,5 @@ export const LOAD_EXACT_PAGE = "LOAD_EXACT_PAGE";
 
 export const SORT_BY_ASC = "SORT_BY_ASC";
 export const SORT_BY_DESC = "SORT_BY_DESC";
+export const ITEM = "ITEM";
 // const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";

@@ -3,11 +3,12 @@ import TableData from './TableData';
 import { useSelector } from 'react-redux';
 
 const FetchData = () => {
-    const userData = useSelector((state) => state.fetchApiReducer.items.data)
+    // const userData = useSelector((state) => state.fetchApiReducer.items.data)
+    const FilterData = useSelector((state) => state.fetchApiReducer.filteredItems)
     return (
         <Fragment>
             <div className="container px-2">
-                <TableData data={userData} itemsPerPage={5} />
+                <TableData data={FilterData} itemsPerPage={5} />
             </div>
         </Fragment>
 

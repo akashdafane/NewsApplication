@@ -197,25 +197,29 @@ import Input from '../Components/Common/Input';
 import _ from 'lodash';
 import Button from './Common/Button';
 import { sortByAsc, sortByDesc } from '../actions/actionType';
-import axios from 'axios';
 import { fetchUserAction } from '../actions/fetchUserAction';
-import { makeStyles } from '@material-ui/core/styles';
+import { item } from '../actions/actionType';
 import Pagination from '@material-ui/lab/Pagination';
+import ReactPaginate from 'react-paginate';
 
 
 
 const UserFilter = () => {
 
-  // const userData = useSelector((state) => state.fetchApiReducer.items.data)
   const FilterData = useSelector((state) => state.fetchApiReducer.filteredItems)
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const [pageNumber, setPageNumber] = useState(0);
+  const userPerPage = 5
+  const pagesVisited = pageNumber * userPerPage
+
   // const [sorting, setSort] = useState("");
   // const [data, setData] = useState("")
 
-  // console.log("Ass", data.data)
+  console.log("Ass", pageNumber)
   useEffect(() => {
     dispatch(fetchUserAction())
+    
   }, [])
 
   const sortAsc = () => {
@@ -228,31 +232,60 @@ const UserFilter = () => {
     dispatch(sortByDesc(temp2))
   }
 
-  const items = FilterData && FilterData && FilterData.filter((data) => {
-    // debugger
-    if (search == "")
-      return data
-    else if (data.name.toLowerCase().includes(search.toLowerCase())) {
-      return data
-    }
+  const handleSearch = (e) => {
+    setSearch(e)
+    const items = FilterData && FilterData && FilterData.filter((data) => {
+      // debugger
+      if (e == "")
+        return data
+      else if (data.name.toLowerCase().includes(e.toLowerCase())) {
+        return data
+      } 
+    })
+    console.log("b",items)
+    dispatch(item(items))
+   
+  }
 
-  }).map((data) => {
-    return (
-      <div>
-        <ul>
-          <li>{data.name}</li>
-        </ul>
-      </div>
-    )
-  })
+  
+
+  // console.log("items", search)
+
+  const displayUsers = FilterData.slice(pagesVisited, pagesVisited + userPerPage)
+    .map((tech) => {
+      return (
+        <div>
+          {tech.name}
+        </div>
+      )
+    })
+
+  const pageCount = Math.ceil(FilterData.length / userPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  }
 
   return (
     <div>
-      <Input type={"text"} className={"form-control"} placeholder={"Enter item to be searched"} onChange={(e) => setSearch(e)} />
+      <Input type={"text"} className={"form-control"} placeholder={"Enter item to be searched"} onChange={(e) => handleSearch(e)} />
       <Button type={"button"} className={"btn btn-success"} label={"Asc"} onClick={sortAsc} />
       <Button type={"button"} className={"btn btn-success"} label={"Desc"} onClick={sortDescending} />
-      {items}
-      <Pagination count={5} color="primary" />
+      {/* {items} */}
+      {displayUsers}
+
+      <ReactPaginate
+        previousLabel={"Previos"}
+        nextLabel={"Next"}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={"paginationBttns"}
+        previousClassName={"previosBttns"}
+        nextLinkClassName={"nextbttns"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+      />
+      {/* <Pagination count={userPerPage} onClick={changePage} pageCount={pageCount}  color="primary" /> */}
     </div>
   )
 }

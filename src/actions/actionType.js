@@ -69,6 +69,11 @@ export const sortByPrice = payload => ({
     type: all.SORT_BY_DESC,
     payload
   });
+
+  export const item = payload => ({
+    type: all.ITEM,
+    payload
+  });
   
 //   export function sortByAsc(){
 //     return function(dispatch){
