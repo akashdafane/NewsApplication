@@ -7,7 +7,7 @@ const Input = ({
     onChange,
     placeholder,
     label,
-    value
+    value,
 }) => {
     return(
         <>

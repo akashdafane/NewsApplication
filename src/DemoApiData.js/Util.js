@@ -43,7 +43,10 @@ export const addition = (subjects) => {
     var sum = 0;
     subjects.forEach((sub) => (sum = sum + sub.mark));
     return sum
-}
+};
+
+
+
 
 // export const getMax = (arr, prop) => {
 //     var max;

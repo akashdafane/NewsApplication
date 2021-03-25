@@ -43,7 +43,7 @@ import {
 
 export function fetchUserAction(){
     return function(dispatch){
-        Axios('https://jsonplaceholder.typicode.com/users')
+        Axios('https://jsonplaceholder.typicode.com/todos')
         // .then(res => res.json())
         .then(response => dispatch({
             type: FETCH_USER_SUCCESS,
