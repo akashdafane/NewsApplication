@@ -201,6 +201,7 @@ import { fetchUserAction } from '../actions/fetchUserAction';
 import { item } from '../actions/actionType';
 import Pagination from '@material-ui/lab/Pagination';
 import ReactPaginate from 'react-paginate';
+import Toast from './Common/Toast'
 // import { sortAsc } from '../DemoApiData.js/Util'
 // import { sortDescending } from '../DemoApiData.js/Util'
 
@@ -218,10 +219,10 @@ const UserFilter = () => {
   // const [data, setData] = useState("")
 
   console.log("Ass", pageNumber)
-  useEffect(() => {
-    dispatch(fetchUserAction())
+  // useEffect(() => {
+  //   dispatch(fetchUserAction())
 
-  }, [])
+  // }, [])
 
  
 
@@ -268,11 +269,25 @@ const UserFilter = () => {
     setPageNumber(selected);
   }
 
+  const loadData = () => {
+    dispatch(fetchUserAction())
+  }
+
+  
+  //   useEffect(() => {
+  //     return () => {
+  //         // Anything in here is fired on component unmount.
+  //         dispatch(fetchUserAction())
+  //     }
+  // }, [])
+  
+
   return (
     <div>
       <Input type={"text"} data-toggle={"buttons"} className={"form-control"} placeholder={"Enter item to be searched"} onChange={(e) => handleSearch(e)} />
       <Button type={"button"} className={"btn btn-success"} label={"Asc"} onClick={sortAsc} />
       <Button type={"button"} className={"btn btn-success"} label={"Desc"} onClick={sortDescending} />
+      <Button type={"button"} className={"btn btn-success"} label={"clear"} onClick={loadData} />
       {/* {items} */}
 
       {displayUsers}

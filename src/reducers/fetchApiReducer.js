@@ -14,7 +14,7 @@ const initialState = {
     filteredItems: [],
 }
 
-export default function (state = initialState, action) {
+const fetchApiReducer = (state = initialState, action) =>{
     switch (action.type) {
         // case FETCH_API_SUCCESS:
         //     return {
@@ -42,3 +42,5 @@ export default function (state = initialState, action) {
             return state;
     }
 }
+
+export default fetchApiReducer;
