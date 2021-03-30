@@ -10,6 +10,7 @@ const FetchUser = (props) => {
     // },[])
     const userData = useSelector(state => state.fetchApiReducer.items.data)
 
+    console.log("object,",userData)
 
     const { useState } = React;
 

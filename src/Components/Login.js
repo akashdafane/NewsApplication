@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import { loginInfo } from '../actions/loginAction';
 import { Redirect } from 'react-router-dom';
 import Dashboard from './Dashboard';
+import Input from './Common/Input';
 
 const Login = (props) => {
 
@@ -33,10 +34,10 @@ const Login = (props) => {
             // toast.success("success");
             setLoggedIn({ loggedIn: true })
             // setTimeout(() => {
-                // props.history.push("/Dashboard")
+            // props.history.push("/Dashboard")
 
-                // <Redirect to="/Dashboard" />
-                // <In />
+            // <Redirect to="/Dashboard" />
+            // <In />
             // }, 2000);
         }
         else {
@@ -49,12 +50,12 @@ const Login = (props) => {
     return (
         <>
             {
-            loggedIn 
-            &&  
-            // setTimeout(() => {
-            //     toast.success("success");
-            // }, 2000) 
-            <Redirect to="/Dashboard" />
+                loggedIn
+                &&
+                // setTimeout(() => {
+                //     toast.success("success");
+                // }, 2000) 
+                <Redirect to="/Dashboard" />
 
             }
 
@@ -89,14 +90,24 @@ const Login = (props) => {
                                         <i className="fas fa-key"></i>
                                     </div>
                                 </div>
+                                <Input
+                                    type={"password"}
+                                    isPassword
+                                    placeholder={"Enter Password"}
+                                    className={"form-control"}
+                                    //  name={"password"}  
+                                    value={password.password}
 
-                                <input
+                                    onChange={(val) => setPassword({ password: val })}
+                                //  iconClass="fas fa-lock"
+                                />
+                                {/* <input
                                     type="password"
                                     placeholder="Enter Password"
                                     className="form-control"
                                     name="password"
                                     value={password.password}
-                                    onChange={e => setPassword({ password: e.target.value })} />
+                                    onChange={e => setPassword({ password: e.target.value })} /> */}
                             </div>
                             <br />
                             <div className="custom-control custom-checkbox">

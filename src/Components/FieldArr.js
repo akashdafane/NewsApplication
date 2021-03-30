@@ -1,132 +1,189 @@
-import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Grid, Button, CircularProgress, Typography } from '@material-ui/core';
-import { CheckboxWithLabel, TextField } from 'formik-material-ui'
+import {
+    Button,
+    Card,
+    CardContent,
+    CircularProgress,
+    Grid,
+    makeStyles,
+    Typography
+} from '@material-ui/core';
 import { Field, FieldArray, Form, Formik } from 'formik';
-import { object, number, string, boolean } from 'yup';
-import FieldArrayList from './FieldArrayList';
+import { CheckboxWithLabel, TextField } from 'formik-material-ui';
+import React from 'react';
+import FieldArrayList from './FieldArrayList'
+import { array, boolean, number, object, string, ValidationError } from 'yup';
+
+const emptyDonation = { institution: '', percentage: 0 };
+//   const useStyles = makeStyles((theme) => ({
+//     errorColor: {
+//       color: theme.palette.error.main,
+//     },
+//     noWrap: {
+//       [theme.breakpoints.up('sm')]: {
+//         flexWrap: 'nowrap',
+//       },
+//     },
+//   }));
+
+function FieldArr() {
 
 
-const emptyDonation = { institution: '', }
-
-const FieldArr = () => {
-
-    const [datas, setDatas] = useState('');
-
-    console.log("values", datas)
-
-    useEffect(() => {
-        setDatas(FieldArr.values)
-    })
-    // var pass = FieldArr.values
     return (
         <Card>
             <CardContent>
-                <Formik initialValues={{
-                    fullName: '',
-                    donationsAmount: 0,
-                    termsAndCondition: false,
-                    donations: [emptyDonation],
-                }}
+                <Formik
+                    initialValues={{
+                        fullName: '',
+                        donationsAmount: 0,
+                        termsAndConditions: false,
+                        donations: [emptyDonation],
+                    }}
                     validationSchema={object({
                         fullName: string()
-                            .required('You need to provide a name')
-                            .min(2, 'Your FullNmae needs at least 2 characters')
-                            .max(10, 'Your Name cannot be Bigger than 10Characters'),
+                            .required('Your name is required')
+                            .min(2, 'Your name needs to be at least 3 characters')
+                            .max(10, 'Your name needs to be at most 10 characters'),
                         donationsAmount: number().required().min(10),
-                        termsAndCondition: boolean().required(),
+                        termsAndConditions: boolean().required().isTrue(),
+                        donations: array(
+                            object({
+                                institution: string()
+                                    .required('Institution name needed')
+                                    .min(3, 'Institution name needs to be at least 3 characters')
+                                    .max(
+                                        10,
+                                        'Institution name needs to be at most 10 characters'
+                                    ),
+                                percentage: number()
+                                    .required('Percentage needed')
+                                    .min(1, 'Percentage needs to be at least 1%')
+                                    .max(100, 'Percentage can be at most 100%'),
+                            })
+                        )
+                            .min(1, 'You need to provide at least 1 institution')
+                            .max(3, 'You can only provide 3 institution')
+
                     })}
                     onSubmit={async (values) => {
-                        console.log("values", values)
-                        return new Promise(res => setTimeout(res, 2500));
-                    }}>
-                    <FieldArrayList data={datas} />
-                    {({ values, errors, isSubmitting }) => (
-                        <Form autoComplete="off" >
+                        console.log('my values', values);
+                        return new Promise((res) => setTimeout(res, 2500));
+                    }}
+                >
+                    {({ values, errors, isSubmitting, isValid }) => (
+                        <Form autoComplete="off">
                             <Grid container direction="column" spacing={2}>
                                 <Grid item>
                                     <Field
                                         fullWidth
                                         name="fullName"
                                         component={TextField}
-                                        label="fullName"
+                                        label="Full Name"
                                     />
                                 </Grid>
+
                                 <Grid item>
                                     <Field
                                         fullWidth
                                         name="donationsAmount"
                                         type="number"
                                         component={TextField}
-                                        label="Donation ($)"
+                                        label="Donation (£)"
                                     />
                                 </Grid>
+
                                 <FieldArray name="donations">
-                                    {({ push, remove, }) => (
+                                    {({ push, remove }) => (
                                         <React.Fragment>
                                             <Grid item>
-                                                <Typography variant="h5">
+                                                <Typography variant="body2">
                                                     All your donations
-                                                    </Typography>
+                          </Typography>
                                             </Grid>
+
                                             {values.donations.map((_, index) => (
-                                                <Grid conatiner key={index} >
-                                                    <Grid item item xs={12} sm="auto">
-                                                        <Field
-                                                            fullWidth
-                                                            name={`donations[${index}].institution`}
-                                                            component={TextField} label="Institution"
-                                                        />
-                                                    </Grid>
-                                                    <Grid item item xs={12} sm="auto">
-                                                        <Field
-                                                            fullWidth
-                                                            name={`donations[${index}].percentage `}
-                                                            component={TextField} label="Percentage"
-                                                        />
-                                                        <Grid item>
-                                                            <Button onClick={() => remove(index)}>Delete</Button>
+                                                <Grid
+                                                    container
+                                                    item
+                                                    key={index}
+                                                    spacing={2}
+                                                >
+                                                    <Grid item container spacing={2} xs={12} sm="auto">
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Field
+                                                                fullWidth
+                                                                name={`donations.${index}.institution`}
+                                                                component={TextField}
+                                                                label="Institution"
+                                                            />
                                                         </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Field
+                                                                fullWidth
+                                                                name={`donations[${index}].percentage`}
+                                                                component={TextField}
+                                                                type="number"
+                                                                label="Percentage (%)"
+                                                            />
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid item xs={12} sm="auto">
+                                                        <Button
+                                                            disabled={isSubmitting}
+                                                            onClick={() => remove(index)}
+                                                        >
+                                                            Delete
+                              </Button>
                                                     </Grid>
                                                 </Grid>
                                             ))}
+
                                             <Grid item>
-                                                <Button variant="contained" onClick={() => push(emptyDonation)}>
+                                                <Button
+                                                    disabled={isSubmitting}
+                                                    variant="contained"
+                                                    onClick={() => push(emptyDonation)}
+                                                >
                                                     Add Donation
-                                                </Button>
+                          </Button>
                                             </Grid>
                                         </React.Fragment>
                                     )}
                                 </FieldArray>
+
                                 <Grid item>
                                     <Field
-                                        name="termsAndCondition "
+                                        name="termsAndConditions"
                                         type="checkbox"
                                         component={CheckboxWithLabel}
-                                        Label={{ label: 'I accepts terms and condition' }}
+                                        Label={{
+                                            label: 'I accept the terms and conditions',
+                                        }}
                                     />
                                 </Grid>
+
                                 <Grid item>
                                     <Button
-                                        type="submit"
                                         disabled={isSubmitting}
+                                        type="submit"
                                         variant="contained"
                                         color="primary"
-                                        startIcon={isSubmitting ? <CircularProgress size="0.9rem" /> : undefined}
+                                        startIcon={
+                                            isSubmitting ? (
+                                                <CircularProgress size="0.9rem" />
+                                            ) : undefined
+                                        }
                                     >
                                         {isSubmitting ? 'Submitting' : 'Submit'}
                                     </Button>
                                 </Grid>
                             </Grid>
-                            <h1>Hello </h1>
-                            <pre>{JSON.stringify({ values, errors }, null, 4)}</pre>
-
+                            <FieldArrayList data={[values]} />
+                            {/* <pre>{JSON.stringify({ values, errors }, null, 4)}</pre> */}
                         </Form>
                     )}
                 </Formik>
             </CardContent>
         </Card>
-
-    )
+    );
 }
-
-export default FieldArr;
+export default FieldArr
