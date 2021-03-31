@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
-import React from 'react';
+import React, { useState } from 'react';
 import FieldArrayList from './FieldArrayList'
 import { array, boolean, number, object, string, ValidationError } from 'yup';
 
@@ -27,6 +27,7 @@ const emptyDonation = { institution: '', percentage: 0 };
 
 function FieldArr() {
 
+   
 
     return (
         <Card>
@@ -97,10 +98,10 @@ function FieldArr() {
                                             <Grid item>
                                                 <Typography variant="body2">
                                                     All your donations
-                          </Typography>
+                                                 </Typography>
                                             </Grid>
 
-                                            {values.donations.map((_, index) => (
+                                            {values.donations.map((k, index) => (
                                                 <Grid
                                                     container
                                                     item

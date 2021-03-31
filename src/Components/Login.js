@@ -3,49 +3,59 @@ import './Login.css'
 // import { Link } from "react-router-dom";
 import NewsDetails from './NewsDetails';
 // import Dashboard from './Dashboard';
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+import {Toaster, toast} from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { startlogin } from "../actions/personAction";
 import { connect } from "react-redux";
 import { login1 } from "../actions/actionType"
 import { bindActionCreators } from 'redux';
 import { loginInfo } from '../actions/loginAction';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Input from './Common/Input';
+import Button from './Common/Button';
+// import Checkbox from './Common/Checkbox';
+// import { CheckBox } from '@material-ui/icons';
+
 
 const Login = (props) => {
 
     const [email, setEmail] = useState({ email: '' })
     const [password, setPassword] = useState({ password: '' })
     const [loggedIn, setLoggedIn] = useState()
+    const [isChecked, setIsChecked] = useState(false)
 
-    let login = (e) => {
-        e.preventDefault();
-        props.dispatch(loginInfo(
-            email.email,
-            password.password
-        ));
-        console.log("#####", props.loginData)
-        // console.log("deng", props.loginData[0].email)
+    const login = (e) => {
+        // e.preventDefault();
+        // props.dispatch(loginInfo(
+        //     email.email,
+        //     password.password
+        // ));
+        // console.log("#####", props.loginData)
+        // localStorage.getItem('email')
+        // console.log("localstorage", localStorage.getItem('email'))
+        
 
-        if (email.email === "admin" && password.password === "admin1") {
-            localStorage.setItem('token', "kmdskmda");
-            // toast.success("success");
+        if ( localStorage.getItem('email') == email.email) {
+            
+            toast.success("Login Successfull")
+            setTimeout(() => {
+               setIsChecked(true)
+                localStorage.setItem('token', "kmdskmda");
             setLoggedIn({ loggedIn: true })
-            // setTimeout(() => {
-            // props.history.push("/Dashboard")
-
-            // <Redirect to="/Dashboard" />
-            // <In />
-            // }, 2000);
+            }, 2000);
+           
         }
         else {
-            // toast.error("Please Try Again");
+            toast.error("Please Try Again");
         }
 
     }
 
+    const onChangeCheckbox = event => {
+        setIsChecked(event.target.checked)
+    }
 
     return (
         <>
@@ -111,11 +121,14 @@ const Login = (props) => {
                             </div>
                             <br />
                             <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="chk1" />
+                                <input type="checkbox" className="custom-control-input" id="chk1"  name="lsRememberMe" checked={isChecked} onChange={onChangeCheckbox}/>
+                                
                                 <label className="custom-control-label" for="chk1">Remember Me</label>
                             </div>
+                            
 
                             <button type="button" className="btn btn-primary btn-block btn-md" id="login" id="button" onClick={login} >Login</button>
+                           <Link to ="/Signup"> <Button type={"button"} className={"btn btn-success btn-block btn-md"} onClick={()=>{}} id="Signup" label={"Signup"} /></Link>
 
                             <br />
                             <button type="button" className="btn btn-danger" >Cancel</button>
@@ -128,7 +141,7 @@ const Login = (props) => {
                     </div>
                     <br />
                 </div>
-                <ToastContainer
+                {/* <ToastContainer
                     position="top-center"
                     autoClose={2500}
                     hideProgressBar={false}
@@ -138,7 +151,11 @@ const Login = (props) => {
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
-                />
+                /> */}
+                <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
             </div>
         </>
     )

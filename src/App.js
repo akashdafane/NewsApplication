@@ -25,6 +25,7 @@ import Dbounce from './Components/Dbounce'
 import MemoCom from './Components/MemoCom';
 import ParentComponent from './Components/ParentComponent';
 import  FieldArr  from './Components/FieldArr'
+import SignUp from './Components/Signup';
 // import AverageofSectionB from './Components/AverageofSectionB';
 // import React, { Suspense, lazy } from 'react';
 
@@ -59,6 +60,7 @@ function App(props) {
         <Route path="/Dbounce" component={Dbounce} {...props} />
         <Route path="/ParentComponent" component={ParentComponent} {...props} />
         <Route path="/FieldArr" component={FieldArr} {...props}/>
+        <Route path="/Signup" component={SignUp} {...props}/>
         {/* <Route path="/AverageofSectionB" component={AverageofSectionB} {...props} /> */}
         {/* <Route path="/Routes" component={Routes} /> */}
         <Redirect from="/" to="/login" />

@@ -1,69 +1,25 @@
-import React from 'react';
-import students from './ApiData';
+import React, {useState} from 'react';
 
 const FieldArrayList = (props) => {
-    
-    var data = props.data
-    console.log("data",data)
-    // console.log("data",data[0].donations.forEach(element => {
-    //     console.log("each",element)
-    // }))
+    const [isEditing, setIsEditing] = useState(false)
+    const [ name, setName] = useState('')
 
+    const toggleEditing = () => {
+        console.log("click",isEditing)
+        setIsEditing(!isEditing)
+        
+    }
+    console.log("props",name)
+
+   const editHandler = (event) => {
+    event.preventDefault();
+   } 
    
-
-    // var arrA = data && data&& data.filter((student) => student.donations)
-    // console.log("arrA",arrA)
-    // var arrB = arrA[0].donations
-
-    
-    // console.log("b",b)
-    // arrA.donations.forEach(element => {
-    //     console.log("element",element)
-    // });
-    
-    // data && data && data.donations.forEach(element => {
-    //     console.log("s",element)
-    // });
-
-    // data.forEach(element => {
-    //     element.donations.filter(s=>{
-    //         console.log("s",s)
-    //     })
-    // });
-    // console.log("map",sdata)
-    // var mdata = sdata.donations.forEach(s => {
-    //     console.log(s)
-    // })
-    // console.log("mdata",mdata)
-    // var sdata = data.filter((st) => st.donations == 'institution')
-    // console.log("sdata",sdata)
-
-    // var s = data.filter((st) => ?st.donations == 'institution')
-    // var s = props.data.map((v,k) => {
-    //     console.log("v",v)
-    // })
-    // console.log("s",s)
-
-//    var s =  arrB.map((v,k) => {
-//         console.log("v",v)
-//         console.log("k",k)
-//         return(
-//             <div>
-//                 <table>
-//                     <tr>
-//                         <th>FirstName</th>
-//                         <th>Donation Amount</th>
-//                         <th>Institution</th>
-//                     </tr>
-//                 </table>
-//             </div>
-//         )
-//     })
-
     return(
         <>
+    
     {
-       data.length > 0 &&  data.map((dataValue , key)=> {
+       props.data.length > 0 &&  props.data.map((dataValue , key)=> {
            return(
                <>
                <tabel className="table">
@@ -76,15 +32,25 @@ const FieldArrayList = (props) => {
                    </tr>
                {
                    dataValue.donations.map((value , key)=> {
+                       
                     return(
                         <>
+                        {isEditing && (
+                        <div>
+                             <form onSubmit={editHandler}>
+                                 <input type="text" defaultValue={dataValue.fullName}/>
+                                 <button type="submit" >Save</button>
+                                 <button type="button" onClick={toggleEditing}>Cancel</button>
+                             </form>
+                            </div>
+                        )}
                         <tbody>
                             <tr scope="row">
                                 <td>{dataValue.fullName}</td>
                                 <td>{dataValue.donationsAmount}</td>
                                 <td>{value.institution}</td>
                                 <td>{value.percentage}</td>
-                                <td><i class="fas fa-edit"></i></td>
+                                <td><i class="fas fa-edit" onClick={toggleEditing}></i></td>
                             </tr>
                         </tbody>
                         </>
@@ -96,6 +62,7 @@ const FieldArrayList = (props) => {
            )
             
          })
+        
     }
         
            {/* {s} */}
