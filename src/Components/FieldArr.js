@@ -9,9 +9,13 @@ import {
 } from '@material-ui/core';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FieldArrayList from './FieldArrayList'
 import { array, boolean, number, object, string, ValidationError } from 'yup';
+import {useDispatch, useSelector} from 'react-redux';
+import {fieldArray} from '../actions/actionType'
+
+
 
 const emptyDonation = { institution: '', percentage: 0 };
 //   const useStyles = makeStyles((theme) => ({
@@ -25,9 +29,11 @@ const emptyDonation = { institution: '', percentage: 0 };
 //     },
 //   }));
 
+
 function FieldArr() {
 
-   
+    // const user = useSelector((state) => state.fieldArrayReducer)
+    const dispatch = useDispatch()
 
     return (
         <Card>
@@ -66,8 +72,10 @@ function FieldArr() {
 
                     })}
                     onSubmit={async (values) => {
-                        console.log('my values', values);
-                        return new Promise((res) => setTimeout(res, 2500));
+                       //dispatch action
+                       dispatch(fieldArray([values]))
+                        
+                        // return new Promise((res) => setTimeout(res, 2500));
                     }}
                 >
                     {({ values, errors, isSubmitting, isValid }) => (
@@ -133,7 +141,7 @@ function FieldArr() {
                                                             onClick={() => remove(index)}
                                                         >
                                                             Delete
-                              </Button>
+                                                    </Button>
                                                     </Grid>
                                                 </Grid>
                                             ))}
@@ -145,7 +153,7 @@ function FieldArr() {
                                                     onClick={() => push(emptyDonation)}
                                                 >
                                                     Add Donation
-                          </Button>
+                                          </Button>
                                             </Grid>
                                         </React.Fragment>
                                     )}
@@ -178,7 +186,7 @@ function FieldArr() {
                                     </Button>
                                 </Grid>
                             </Grid>
-                            <FieldArrayList data={[values]} />
+                            <FieldArrayList  data={[values]}/>
                             {/* <pre>{JSON.stringify({ values, errors }, null, 4)}</pre> */}
                         </Form>
                     )}

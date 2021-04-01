@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css'
 // import { Link } from "react-router-dom";
 import NewsDetails from './NewsDetails';
 // import Dashboard from './Dashboard';
 // import { ToastContainer, toast } from "react-toastify";
-import {Toaster, toast} from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { startlogin } from "../actions/personAction";
 import { connect } from "react-redux";
@@ -21,11 +21,25 @@ import Button from './Common/Button';
 
 const Login = (props) => {
 
-    const [email, setEmail] = useState({ email: '' })
+    // const [email, setEmail] = useState({ email: '' })
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState({ password: '' })
     const [loggedIn, setLoggedIn] = useState()
     const [isChecked, setIsChecked] = useState(false)
 
+    useEffect(() => {
+
+        setEmail(
+            localStorage.username
+        )
+    }, [])
+
+    const onChangeCheckbox = event => {
+        setIsChecked(event.target.checked)
+
+    }
+
+    // console.log("checkbox",isChecked)
     const login = (e) => {
         // e.preventDefault();
         // props.dispatch(loginInfo(
@@ -35,17 +49,24 @@ const Login = (props) => {
         // console.log("#####", props.loginData)
         // localStorage.getItem('email')
         // console.log("localstorage", localStorage.getItem('email'))
-        
+        if (isChecked == true) {
+            localStorage.username = email
+            localStorage.checkbox = isChecked
+        } else {
 
-        if ( localStorage.getItem('email') == email.email) {
-            
+        }
+
+
+        if (email !== "" && localStorage.getItem('email') == email) {
+
             toast.success("Login Successfull")
+
             setTimeout(() => {
-               setIsChecked(true)
+                // setIsChecked(true)
                 localStorage.setItem('token', "kmdskmda");
-            setLoggedIn({ loggedIn: true })
+                setLoggedIn({ loggedIn: true })
             }, 2000);
-           
+
         }
         else {
             toast.error("Please Try Again");
@@ -53,9 +74,6 @@ const Login = (props) => {
 
     }
 
-    const onChangeCheckbox = event => {
-        setIsChecked(event.target.checked)
-    }
 
     return (
         <>
@@ -88,8 +106,8 @@ const Login = (props) => {
                                     className="form-control"
                                     id="email1"
                                     name="email"
-                                    value={email.email}
-                                    onChange={e => setEmail({ email: e.target.value })} />
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)} />
                             </div><br></br>
 
                             {/* <!--password--> */}
@@ -121,14 +139,14 @@ const Login = (props) => {
                             </div>
                             <br />
                             <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="chk1"  name="lsRememberMe" checked={isChecked} onChange={onChangeCheckbox}/>
-                                
+                                <input type="checkbox" className="custom-control-input" id="chk1" name="lsRememberMe" checked={isChecked} onChange={onChangeCheckbox} />
+
                                 <label className="custom-control-label" for="chk1">Remember Me</label>
                             </div>
-                            
+
 
                             <button type="button" className="btn btn-primary btn-block btn-md" id="login" id="button" onClick={login} >Login</button>
-                           <Link to ="/Signup"> <Button type={"button"} className={"btn btn-success btn-block btn-md"} onClick={()=>{}} id="Signup" label={"Signup"} /></Link>
+                            <Link to="/Signup"> <Button type={"button"} className={"btn btn-success btn-block btn-md"} onClick={() => { }} id="Signup" label={"Signup"} /></Link>
 
                             <br />
                             <button type="button" className="btn btn-danger" >Cancel</button>
@@ -141,21 +159,10 @@ const Login = (props) => {
                     </div>
                     <br />
                 </div>
-                {/* <ToastContainer
-                    position="top-center"
-                    autoClose={2500}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                /> */}
                 <Toaster
-  position="top-right"
-  reverseOrder={false}
-/>
+                    position="top-right"
+                    reverseOrder={false}
+                />
             </div>
         </>
     )

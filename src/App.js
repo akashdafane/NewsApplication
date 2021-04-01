@@ -28,6 +28,7 @@ import  FieldArr  from './Components/FieldArr'
 import SignUp from './Components/Signup';
 // import AverageofSectionB from './Components/AverageofSectionB';
 // import React, { Suspense, lazy } from 'react';
+import FieldArrayList from './Components/FieldArrayList';
 
 // const Dashboard = lazy(() => import('./Components/Dashboard'));
 
@@ -61,6 +62,7 @@ function App(props) {
         <Route path="/ParentComponent" component={ParentComponent} {...props} />
         <Route path="/FieldArr" component={FieldArr} {...props}/>
         <Route path="/Signup" component={SignUp} {...props}/>
+        <Route path="/FieldArrayList" component={FieldArrayList} {...props}/>
         {/* <Route path="/AverageofSectionB" component={AverageofSectionB} {...props} /> */}
         {/* <Route path="/Routes" component={Routes} /> */}
         <Redirect from="/" to="/login" />

@@ -401,6 +401,15 @@ export default function PersistentDrawerLeft() {
                          </Link>
                     </ListItem>
 
+                    <ListItem >
+                        <ListItemIcon><InboxIcon /> </ListItemIcon>
+                        <Link to='/FieldArrayList' >
+                            {/* <button type="button" className="btn btn-primary"> */}
+                            FieldArrayList
+
+                         </Link>
+                    </ListItem>
+
 
                     <ListItem >
                         <ListItemIcon><InboxIcon /> </ListItemIcon>

@@ -2,7 +2,7 @@
 
 import * as all from './types';
 import _ from 'lodash';
-import {useSelector} from 'react-redux'
+
 
 
 export const LOGIN = "LOGIN";
@@ -81,7 +81,7 @@ export const sortByPrice = payload => ({
   export const fieldArray = payload => ({
     type: all.FIELD_ARRAY,
     payload
-  })
+  });
   
 //   export function sortByAsc(){
 //     return function(dispatch){

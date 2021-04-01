@@ -24,4 +24,4 @@ export const ITEM = "ITEM";
 
 // FieldArray
 
-export const FIELD_ARRAY = "FIELD_ARRAY"    
+export const FIELD_ARRAY = "FIELD_ARRAY";

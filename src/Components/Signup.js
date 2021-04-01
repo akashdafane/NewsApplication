@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 function SignUp() {
   const classes = useStyles();
   const [firstName, setFirstName] = useState('')
-const [lastName, setLastName] = useState('')
-const [email, setEmail] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
 
 const handleLogin = (e) => {
     e.preventDefault()
