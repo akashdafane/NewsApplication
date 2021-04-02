@@ -12,8 +12,9 @@ import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useEffect, useState } from 'react';
 import FieldArrayList from './FieldArrayList'
 import { array, boolean, number, object, string, ValidationError } from 'yup';
-import {useDispatch, useSelector} from 'react-redux';
-import {fieldArray} from '../actions/actionType'
+import { useDispatch, useSelector } from 'react-redux';
+import { fieldArray } from '../actions/actionType';
+import { Link } from 'react-router-dom';
 
 
 
@@ -29,20 +30,43 @@ const emptyDonation = { institution: '', percentage: 0 };
 //     },
 //   }));
 
+const temp1 = []
 
-function FieldArr() {
+function FieldArr({history}) {
+
+
+        console.log("history",history)
+    const [test, setTest] = useState([]);
+
+// const { FieldArrayData } = history.location.state
+
+const editdata = history.location.state || ''
+
+console.log("editdata",editdata)
+
+const {
+    fullName,
+    donationsAmount,
+    termsAndConditions,
+    initialValues,
+} = editdata
+
+// console.log("3",FieldArrayData)
+
+    // const FieldArrayData = useSelector((state) => state.fieldArrayReducer.fieldArray)
 
     // const user = useSelector((state) => state.fieldArrayReducer)
     const dispatch = useDispatch()
 
     return (
+        
         <Card>
             <CardContent>
                 <Formik
                     initialValues={{
-                        fullName: '',
-                        donationsAmount: 0,
-                        termsAndConditions: false,
+                        fullName: fullName,
+                        donationsAmount: donationsAmount,
+                        termsAndConditions: termsAndConditions,
                         donations: [emptyDonation],
                     }}
                     validationSchema={object({
@@ -68,13 +92,20 @@ function FieldArr() {
                             })
                         )
                             .min(1, 'You need to provide at least 1 institution')
-                            .max(3, 'You can only provide 3 institution')
+                        // .max(3, 'You can only provide 3 institution')
 
                     })}
                     onSubmit={async (values) => {
-                       //dispatch action
-                       dispatch(fieldArray([values]))
-                        
+                        //dispatch action
+                        //    restform({values: ''})
+                        console.log("values", values)
+                        //    setTest(values)
+
+                        temp1.push(values)
+                        dispatch(fieldArray(temp1))
+
+
+
                         // return new Promise((res) => setTimeout(res, 2500));
                     }}
                 >
@@ -184,9 +215,18 @@ function FieldArr() {
                                     >
                                         {isSubmitting ? 'Submitting' : 'Submit'}
                                     </Button>
+                                    <Link to="/FieldArrayList"><Button
+
+                                        type="button"
+                                        variant="contained"
+                                        color="secondary"
+
+                                    >
+                                        List
+                                    </Button> </Link>
                                 </Grid>
                             </Grid>
-                            <FieldArrayList  data={[values]}/>
+                            {/* <FieldArrayList  /> */}
                             {/* <pre>{JSON.stringify({ values, errors }, null, 4)}</pre> */}
                         </Form>
                     )}
