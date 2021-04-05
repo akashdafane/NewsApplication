@@ -30,6 +30,8 @@ const emptyDonation = { institution: '', percentage: 0 };
 //     },
 //   }));
 
+
+
 const temp1 = []
 
 function FieldArr({history}) {
@@ -51,6 +53,17 @@ const {
     initialValues,
 } = editdata
 
+const empty = [];
+
+editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k,v) => {
+    console.log("k",k)
+    empty.push({"institution": k.institution, "percentage": k.percentage});
+})
+
+// const emptyDonation = {institution: empty.institution, percentage: empty.percentage};
+const emptyDonation = empty;
+console.log("empty",empty)
+
 // console.log("3",FieldArrayData)
 
     // const FieldArrayData = useSelector((state) => state.fieldArrayReducer.fieldArray)
@@ -64,10 +77,10 @@ const {
             <CardContent>
                 <Formik
                     initialValues={{
-                        fullName: fullName,
-                        donationsAmount: donationsAmount,
-                        termsAndConditions: termsAndConditions,
-                        donations: [emptyDonation],
+                                 fullName: editdata == undefined ? '' : fullName,
+                        donationsAmount: editdata == undefined ? '' : donationsAmount,
+                        termsAndConditions: editdata == undefined ? '' : termsAndConditions,
+                        donations: [{institution: '', percentage: ''}]
                     }}
                     validationSchema={object({
                         fullName: string()
@@ -76,22 +89,22 @@ const {
                             .max(10, 'Your name needs to be at most 10 characters'),
                         donationsAmount: number().required().min(10),
                         termsAndConditions: boolean().required().isTrue(),
-                        donations: array(
-                            object({
-                                institution: string()
-                                    .required('Institution name needed')
-                                    .min(3, 'Institution name needs to be at least 3 characters')
-                                    .max(
-                                        10,
-                                        'Institution name needs to be at most 10 characters'
-                                    ),
-                                percentage: number()
-                                    .required('Percentage needed')
-                                    .min(1, 'Percentage needs to be at least 1%')
-                                    .max(100, 'Percentage can be at most 100%'),
-                            })
-                        )
-                            .min(1, 'You need to provide at least 1 institution')
+                        // donations: array(
+                        //     object({
+                        //         institution: string()
+                        //             .required('Institution name needed')
+                        //             .min(3, 'Institution name needs to be at least 3 characters')
+                        //             .max(
+                        //                 10,
+                        //                 'Institution name needs to be at most 10 characters'
+                        //             ),
+                        //         percentage: number()
+                        //             .required('Percentage needed')
+                        //             .min(1, 'Percentage needs to be at least 1%')
+                        //             .max(100, 'Percentage can be at most 100%'),
+                        //     })
+                        // )
+                        //     .min(1, 'You need to provide at least 1 institution')
                         // .max(3, 'You can only provide 3 institution')
 
                     })}
@@ -101,8 +114,8 @@ const {
                         console.log("values", values)
                         //    setTest(values)
 
-                        temp1.push(values)
-                        dispatch(fieldArray(temp1))
+                        // temp1.push(values)
+                        dispatch(fieldArray(values))
 
 
 
@@ -120,6 +133,9 @@ const {
                                         label="Full Name"
                                     />
                                 </Grid>
+                                {
+                                    console.log("values",values,"error",errors)
+                                    } 
 
                                 <Grid item>
                                     <Field
@@ -140,18 +156,19 @@ const {
                                                  </Typography>
                                             </Grid>
 
-                                            {values.donations.map((k, index) => (
+                                            {values.donations && values.donations.length >0 && values.donations.map((k, index) => (
                                                 <Grid
                                                     container
                                                     item
                                                     key={index}
                                                     spacing={2}
                                                 >
+                                      
                                                     <Grid item container spacing={2} xs={12} sm="auto">
                                                         <Grid item xs={12} sm={6}>
                                                             <Field
                                                                 fullWidth
-                                                                name={`donations.${index}.institution`}
+                                                                name={`donations[${index}].institution`}
                                                                 component={TextField}
                                                                 label="Institution"
                                                             />
