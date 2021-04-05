@@ -1,6 +1,8 @@
+import { set } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 
 
 const FieldArrayList = (props) => {
@@ -13,10 +15,11 @@ const FieldArrayList = (props) => {
     // const [name, setName] = useState('')
 
 
-    const toggleEditing = (dataValue,value) => {
+    const toggleEditing = (dataValue) => {
         // console.log("click", isEditing)
         // setIsEditing(!isEditing)
-        props.history.push('/FieldArr',dataValue,value)
+
+        props.history.push('/FieldArr', dataValue,)
     }
 
     // const editHandler = (event) => {
@@ -49,7 +52,7 @@ const FieldArrayList = (props) => {
 
                                 {
                                     dataValue.donations.map((value, key) => {
-            
+
                                         return (
                                             <>
                                                 {/* {isEditing && (
@@ -69,7 +72,7 @@ const FieldArrayList = (props) => {
                                                         <td>{dataValue.donationsAmount}</td>
                                                         <td>{value.institution}</td>
                                                         <td>{value.percentage}</td>
-                                                        <td><i class="fas fa-edit" onClick={() => toggleEditing(dataValue,value)}></i></td>
+                                                        <td><i class="fas fa-edit" onClick={() => toggleEditing(dataValue)}></i></td>
                                                     </tr>
                                                 </tbody>
                                             </>

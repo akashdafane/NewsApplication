@@ -34,37 +34,38 @@ const emptyDonation = { institution: '', percentage: 0 };
 
 const temp1 = []
 
-function FieldArr({history}) {
+function FieldArr({ history }) {
 
 
-        console.log("history",history)
-    const [test, setTest] = useState([]);
+    console.log("history", history)
+    // const [test, setTest] = useState([]);
+   
+    // const { FieldArrayData } = history.location.state
 
-// const { FieldArrayData } = history.location.state
+    const editdata = history.location.state || ''
 
-const editdata = history.location.state || ''
+    // console.log("history", editdata)
 
-console.log("editdata",editdata)
+    const {
+        fullName,
+        donationsAmount,
+        termsAndConditions,
+        action,
+        initialValues,
+    } = editdata
+    
 
-const {
-    fullName,
-    donationsAmount,
-    termsAndConditions,
-    initialValues,
-} = editdata
+    const empty = [];  
+    
+    editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k, v) => {
+        console.log("k", k)
+        empty.push({ "institution": k.institution, "percentage": k.percentage });
+    })
 
-const empty = [];
 
-editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k,v) => {
-    console.log("k",k)
-    empty.push({"institution": k.institution, "percentage": k.percentage});
-})
+    // const emptyDonation = {institution: empty.institution, percentage: empty.percentage};
 
-// const emptyDonation = {institution: empty.institution, percentage: empty.percentage};
-const emptyDonation = empty;
-console.log("empty",empty)
-
-// console.log("3",FieldArrayData)
+    // console.log("3",FieldArrayData)
 
     // const FieldArrayData = useSelector((state) => state.fieldArrayReducer.fieldArray)
 
@@ -72,15 +73,15 @@ console.log("empty",empty)
     const dispatch = useDispatch()
 
     return (
-        
+
         <Card>
             <CardContent>
                 <Formik
                     initialValues={{
-                                 fullName: editdata == undefined ? '' : fullName,
+                        fullName: editdata == undefined ? '' : fullName,
                         donationsAmount: editdata == undefined ? '' : donationsAmount,
                         termsAndConditions: editdata == undefined ? '' : termsAndConditions,
-                        donations: [{institution: '', percentage: ''}]
+                        donations: editdata == undefined ? '' : empty
                     }}
                     validationSchema={object({
                         fullName: string()
@@ -111,11 +112,13 @@ console.log("empty",empty)
                     onSubmit={async (values) => {
                         //dispatch action
                         //    restform({values: ''})
-                        console.log("values", values)
+                        // console.log("values", values)
                         //    setTest(values)
-
-                        // temp1.push(values)
-                        dispatch(fieldArray(values))
+                        
+                            temp1.push(values)
+                        
+                        
+                        dispatch(fieldArray(temp1))
 
 
 
@@ -133,9 +136,9 @@ console.log("empty",empty)
                                         label="Full Name"
                                     />
                                 </Grid>
-                                {
-                                    console.log("values",values,"error",errors)
-                                    } 
+                                {/* {
+                                    console.log("values", values, "error", errors)
+                                } */}
 
                                 <Grid item>
                                     <Field
@@ -156,14 +159,14 @@ console.log("empty",empty)
                                                  </Typography>
                                             </Grid>
 
-                                            {values.donations && values.donations.length >0 && values.donations.map((k, index) => (
+                                            {values.donations.map((k, index) => (
                                                 <Grid
                                                     container
                                                     item
                                                     key={index}
                                                     spacing={2}
                                                 >
-                                      
+
                                                     <Grid item container spacing={2} xs={12} sm="auto">
                                                         <Grid item xs={12} sm={6}>
                                                             <Field
