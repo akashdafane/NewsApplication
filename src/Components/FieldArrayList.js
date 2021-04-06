@@ -1,8 +1,6 @@
-import { set } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 
 
 const FieldArrayList = (props) => {
@@ -15,11 +13,10 @@ const FieldArrayList = (props) => {
     // const [name, setName] = useState('')
 
 
-    const toggleEditing = (dataValue) => {
+    const toggleEditing = (dataValue, value) => {
         // console.log("click", isEditing)
         // setIsEditing(!isEditing)
-
-        props.history.push('/FieldArr', dataValue,)
+        props.history.push('/FieldArr', dataValue, value)
     }
 
     // const editHandler = (event) => {
@@ -34,55 +31,37 @@ const FieldArrayList = (props) => {
 
     return (
         <>
-
             {
                 FieldArrayData.length > 0 && FieldArrayData.map((dataValue, key) => {
 
                     return (
                         <>
-                            <tabel className="table">
-                                <tr>
-                                    <th scope="col">fullname</th>
-                                    <th scope="col">Doantion</th>
-                                    <th scope="col">Institutuion</th>
-                                    <th scope="col">Percentage</th>
-                                    <th scope="col">Edit</th>
-                                </tr>
+                            <div className="card">
+                                <div className="card-body">
+                                    <ul className="list-group">
+                                        fullName : {dataValue.fullName}<br></br>
+                                        Doantion Amount: {dataValue.donationsAmount}<br></br>
 
+                                        {
+                                            dataValue.donations.map((value, key) => {
 
-                                {
-                                    dataValue.donations.map((value, key) => {
+                                                return (
+                                                    <>
+                                                        Institutuion: {value.institution}<br></br>
+                                                        Percentage: {value.percentage}<br></br>
+                                                        <i className="fas fa-edit" onClick={() => toggleEditing(dataValue, '')}>Edit</i><br></br>
 
-                                        return (
-                                            <>
-                                                {/* {isEditing && (
-                                                    <div>
-                                                        <form onSubmit={editHandler}>
-                                                            <input type="text" defaultValue={dataValue.fullName} onChange={(e) => setName(e.target.value)} />
-                                                            <button type="submit"> Save </button>
-                                                            <button type="button" onClick={toggleEditing}>Cancel</button>
-                                                        </form>
-                                                    </div>
-                                                )} */}
+                                                    </>
 
+                                                )
 
-                                                <tbody>
-                                                    <tr scope="row">
-                                                        <td>{dataValue.fullName}</td>
-                                                        <td>{dataValue.donationsAmount}</td>
-                                                        <td>{value.institution}</td>
-                                                        <td>{value.percentage}</td>
-                                                        <td><i class="fas fa-edit" onClick={() => toggleEditing(dataValue)}></i></td>
-                                                    </tr>
-                                                </tbody>
-                                            </>
+                                            })
+                                        }
 
-                                        )
+                                    </ul>
+                                </div>
+                            </div>
 
-                                    })
-                                }
-
-                            </tabel>
                         </>
                     )
                 })
@@ -90,7 +69,6 @@ const FieldArrayList = (props) => {
 
             }
             <Link to="/FieldArr"><button type="button" className="btn btn-success">FieldArr</button> </Link>
-
 
         </>
     )

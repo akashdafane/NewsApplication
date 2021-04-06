@@ -11,7 +11,7 @@ const fieldArrayReducer = (state = initialState, action) => {
         case FIELD_ARRAY:
             return {
                 ...state,
-                fieldArray: action.payload
+                fieldArray: action.payload,
             }
             default:
                 return state;

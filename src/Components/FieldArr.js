@@ -19,49 +19,34 @@ import { Link } from 'react-router-dom';
 
 
 const emptyDonation = { institution: '', percentage: 0 };
-//   const useStyles = makeStyles((theme) => ({
-//     errorColor: {
-//       color: theme.palette.error.main,
-//     },
-//     noWrap: {
-//       [theme.breakpoints.up('sm')]: {
-//         flexWrap: 'nowrap',
-//       },
-//     },
-//   }));
-
 
 
 const temp1 = []
-
 function FieldArr({ history }) {
 
 
     console.log("history", history)
-    // const [test, setTest] = useState([]);
-   
+    const [test, setTest] = useState([]);
+
     // const { FieldArrayData } = history.location.state
 
     const editdata = history.location.state || ''
 
-    // console.log("history", editdata)
+    console.log("editdata", editdata)
 
     const {
         fullName,
         donationsAmount,
         termsAndConditions,
-        action,
         initialValues,
     } = editdata
-    
 
-    const empty = [];  
-    
+    const empty = [];
+
     editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k, v) => {
-        console.log("k", k)
+        // console.log("k", k)
         empty.push({ "institution": k.institution, "percentage": k.percentage });
     })
-
 
     // const emptyDonation = {institution: empty.institution, percentage: empty.percentage};
 
@@ -109,17 +94,20 @@ function FieldArr({ history }) {
                         // .max(3, 'You can only provide 3 institution')
 
                     })}
-                    onSubmit={async (values) => {
+                    onSubmit={async (values, onSubmitProps) => {
                         //dispatch action
                         //    restform({values: ''})
-                        // console.log("values", values)
-                        //    setTest(values)
-                        
-                            temp1.push(values)
-                        
-                        
-                        dispatch(fieldArray(temp1))
 
+                        //    setTest(values)
+                        // temp1.pop(values)
+                        // temp1.slice(0,1);
+                        // console.log("onsubmitprops",onsubmitprops)
+                        
+                        temp1.push(values)
+                        dispatch(fieldArray(temp1))
+                        onSubmitProps.setSubmitting(false)
+                        onSubmitProps.resetForm()
+                        
 
 
                         // return new Promise((res) => setTimeout(res, 2500));
@@ -159,7 +147,7 @@ function FieldArr({ history }) {
                                                  </Typography>
                                             </Grid>
 
-                                            {values.donations.map((k, index) => (
+                                            {values.donations && values.donations.length > 0 && values.donations.map((k, index) => (
                                                 <Grid
                                                     container
                                                     item

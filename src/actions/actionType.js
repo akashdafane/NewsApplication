@@ -78,9 +78,9 @@ export const sortByPrice = payload => ({
 
   // FIELD ARRAY
 
-  export const fieldArray = payload => ({
+  export const fieldArray = (payload) => ({
     type: all.FIELD_ARRAY,
-    payload
+    payload,
   });
   
 //   export function sortByAsc(){
