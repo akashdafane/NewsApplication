@@ -410,14 +410,22 @@ export default function PersistentDrawerLeft() {
                          </Link>
                     </ListItem>
 
+                    <ListItem >
+                        <ListItemIcon><InboxIcon /> </ListItemIcon>
+                        <Link to='/ReactChart' >
+                            {/* <button type="button" className="btn btn-primary"> */}
+                        Chart
+                        </Link>
+                    </ListItem>
+
+
 
                     <ListItem >
                         <ListItemIcon><InboxIcon /> </ListItemIcon>
                         <Link to='/Logout' >
                             {/* <button type="button" className="btn btn-primary"> */}
                          Logout
-
-              </Link>
+                        </Link>
                     </ListItem>
 
                 </List>

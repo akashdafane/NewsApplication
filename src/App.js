@@ -29,6 +29,9 @@ import SignUp from './Components/Signup';
 // import AverageofSectionB from './Components/AverageofSectionB';
 // import React, { Suspense, lazy } from 'react';
 import FieldArrayList from './Components/FieldArrayList';
+import ReactChart from './Components/ReactChart';
+import Demo1 from './Components/Charts/demo';
+
 
 // const Dashboard = lazy(() => import('./Components/Dashboard'));
 
@@ -65,6 +68,8 @@ function App(props) {
         <Route path="/FieldArrayList" component={FieldArrayList} {...props}/>
         {/* <Route path="/AverageofSectionB" component={AverageofSectionB} {...props} /> */}
         {/* <Route path="/Routes" component={Routes} /> */}
+        <Route path="/ReactChart" component={ReactChart}/>
+        <Route path="/Demo1" component={Demo1} />
         <Redirect from="/" to="/login" />
 
       </Switch>
