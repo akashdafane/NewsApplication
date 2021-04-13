@@ -19,6 +19,8 @@
     "es6-promise": "^4.2.8",
     "formik": "^2.2.6",
     "formik-material-ui": "^3.0.1",
+    "highcharts": "^9.0.1",
+    "highcharts-react-official": "^3.0.0",
     "lodash": "^4.17.21",
     "material-table": "^1.69.2",
     "moment": "^2.29.1",
