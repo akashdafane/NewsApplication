@@ -20,11 +20,13 @@ import Button from './Common/Button';
 
 
 const Login = (props) => {
-
+   
+//    const {loginData} = props
+   console.log("loginprops",props.data)
     // const [email, setEmail] = useState({ email: '' })
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState({ password: '' })
-    const [loggedIn, setLoggedIn] = useState()
+    const [loggedIn, setLoggedIn] = useState() 
     const [isChecked, setIsChecked] = useState(false)
 
     useEffect(() => {
