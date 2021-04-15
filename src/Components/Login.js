@@ -12,12 +12,11 @@ import { login1 } from "../actions/actionType"
 import { bindActionCreators } from 'redux';
 import { loginInfo } from '../actions/loginAction';
 import { Link, Redirect } from 'react-router-dom';
-import Dashboard from './Dashboard';
 import Input from './Common/Input';
 import Button from './Common/Button';
+import Dashboard from './Dashboard'
 // import Checkbox from './Common/Checkbox';
 // import { CheckBox } from '@material-ui/icons';
-
 
 const Login = (props) => {
 
@@ -57,14 +56,17 @@ const Login = (props) => {
         }
 
 
+
         if (email !== "" && localStorage.getItem('email') == email) {
 
-            toast.success("Login Successfull")
+            localStorage.setItem('token', "kmdskmda")
 
             setTimeout(() => {
                 // setIsChecked(true)
-                localStorage.setItem('token', "kmdskmda");
+
                 setLoggedIn({ loggedIn: true })
+
+
             }, 2000);
 
         }
@@ -84,7 +86,6 @@ const Login = (props) => {
                 //     toast.success("success");
                 // }, 2000) 
                 <Redirect to="/Dashboard" />
-
             }
 
             <div className="container-fluid">
