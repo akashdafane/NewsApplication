@@ -8,13 +8,16 @@ import { Toaster, toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { startlogin } from "../actions/personAction";
 import { connect } from "react-redux";
-import { login1 } from "../actions/actionType"
+import { loadData, login1 } from "../actions/actionType"
 import { bindActionCreators } from 'redux';
 import { loginInfo } from '../actions/loginAction';
 import { Link, Redirect } from 'react-router-dom';
 import Input from './Common/Input';
 import Button from './Common/Button';
-import Dashboard from './Dashboard'
+import Dashboard from './Dashboard';
+import Loader from './Loader';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 // import Checkbox from './Common/Checkbox';
 // import { CheckBox } from '@material-ui/icons';
 
@@ -60,13 +63,20 @@ const Login = (props) => {
         if (email !== "" && localStorage.getItem('email') == email) {
 
             localStorage.setItem('token', "kmdskmda")
-
+            toast.success("success");
+               
             setTimeout(() => {
                 // setIsChecked(true)
+            //     const mes =  <Loader
+            //     type="Puff"
+            //     color="#00BFFF"
+            //     height={100}
+            //     width={100}
+            //     timeout={3000} //3 secs
+            //   />
 
-                setLoggedIn({ loggedIn: true })
-
-
+                setLoggedIn({ loggedIn: true})
+                
             }, 2000);
 
         }
@@ -79,9 +89,17 @@ const Login = (props) => {
 
     return (
         <>
+        
             {
                 loggedIn
-                &&
+                &&  
+            //     <Loader
+            //     type="Puff"
+            //     color="#00BFFF"
+            //     height={100}
+            //     width={100}
+            //     timeout={3000} //3 secs
+            //   />&&
                 // setTimeout(() => {
                 //     toast.success("success");
                 // }, 2000) 

@@ -150,8 +150,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect,Route, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import AddTodos from './AddTodos';
+import {usehistory} from 'react-router-dom';
+import Loader from './Loader';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -211,7 +214,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+    let history = useHistory();
+    // console.log("history",history)
+    // console.log("props",props)
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -226,6 +232,7 @@ const Dashboard = () => {
 
     return (
         <div className={classes.root}>
+         
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -245,7 +252,9 @@ const Dashboard = () => {
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         News Application
+                        
           </Typography>
+          
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -269,8 +278,10 @@ const Dashboard = () => {
                     <ListItem >
                         <ListItemIcon><InboxIcon /> </ListItemIcon>
                         <Link to='/AddTodos' >
+                            
                             {/* <button type="button" className="btn btn-primary"> */}
                          Add Todos
+
 
               </Link>
                     </ListItem>
@@ -287,6 +298,7 @@ const Dashboard = () => {
                     <ListItem >
                         <ListItemIcon><InboxIcon /> </ListItemIcon>
                         <Link to='/FetchUser' >
+                           
                             {/* <button type="button" className="btn btn-primary"> */}
                          FetchUser
 

@@ -1,20 +1,21 @@
 import React from 'react';
-
 import {
   Route,
   Redirect
 } from 'react-router-dom';
 
-const PublicRoute = ({component: DashboardRoute}) => {
+const PublicRoute = ({component: Component, ...rest}) => {
+  
   const token = localStorage.getItem('token');
   return (
     <Route
-      render={() => (
+    {...rest}
+      render={(props) => (
         <>
           {token === null ? (
             <Redirect to="/" />
           ) : (
-              <DashboardRoute />
+              <Component {...props}/>
             )}
         </>
       )}
