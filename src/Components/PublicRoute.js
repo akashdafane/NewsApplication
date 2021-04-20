@@ -3,6 +3,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
+import PropsTypes from 'prop-types';
 
 const PublicRoute = ({component: Component, ...rest}) => {
   
@@ -22,4 +23,7 @@ const PublicRoute = ({component: Component, ...rest}) => {
     />
   );
 };
+PublicRoute.propTypes = {
+  component : PropsTypes.func.isRequired
+}
 export default PublicRoute;

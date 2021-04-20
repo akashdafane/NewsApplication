@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { addInfo } from '../actions/formActionType';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
+import PropsTypes from 'prop-types';
+// import Moment from 'react-moment';
 
-function Forms(props) {
+function Forms() {
 
-    const [formvalue, updateFormValues] = useState({});
+    // const [formvalue, updateFormValues] = useState({});
     const [firstName, setFname] = useState({ firstName: '' })
     const [lastName, setLname] = useState({ lastName: '' })
     const [email, setEmail] = useState({ email: '' })
@@ -42,7 +43,7 @@ function Forms(props) {
         <form onSubmit={(e) => {
             e.preventDefault();
             // props.dispatch(addInfo(name.firstName,name.lastName,name.email,name.phone,name.address,name.DOB,name.time,name.url));
-            props.dispatch(addInfo(
+            PropsTypes.dispatch(addInfo(
                 firstName.firstName,
                 lastName.lastName,
                 email.email,

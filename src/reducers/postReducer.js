@@ -1,8 +1,8 @@
-import { FETCH_POSTS, NEW_POSTS } from "../actions/types";
+import { FETCH_POSTS } from "../actions/types";
 
 const initialState = {
     items: [],
-    items: {}
+    // items: {}
 }
 
 export default function(state = initialState, action){

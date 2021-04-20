@@ -1,5 +1,6 @@
 import students from "./ApiData";
-import * as _ from "lodash";
+import React from 'react';
+// import * as _ from "lodash";
 import {average} from '../DemoApiData.js/Util'
 
 export default function SectionB() {

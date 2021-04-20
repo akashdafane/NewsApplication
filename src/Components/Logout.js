@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const Logout = (props) => {
+const Logout = () => {
 
         localStorage.removeItem("token")
     

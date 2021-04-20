@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropsTypes from 'prop-types';
 
 const Button = ({
     label,
@@ -19,6 +19,13 @@ const Button = ({
         </button>
 
     )
+}
+
+Button.propTypes = {
+    label : PropsTypes.func.isRequired,
+    type : PropsTypes.func.isRequired,
+    className : PropsTypes.func.isRequired,
+    onClick : PropsTypes.func.isRequired
 }
 
 export default Button;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import PropsTypes from 'prop-types';
 
 const Input = ({
     type,
@@ -48,6 +48,16 @@ const Input = ({
         </>
 
     )
+}
+
+Input.propTypes = {
+    type : PropsTypes.func.isRequired,
+    className : PropsTypes.func.isRequired,
+    onChange : PropsTypes.func.isRequired,
+    placeholder : PropsTypes.func.isRequired,
+    label : PropsTypes.func.isRequired,
+    value : PropsTypes.func.isRequired,
+    isPassword : PropsTypes.func.isRequired,
 }
 
 export default Input;

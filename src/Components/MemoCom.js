@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const MemoCom = ({name}) =>{
+const MemoCom = () =>{
     console.log("Rendering Memo Component")
     return(
         <>

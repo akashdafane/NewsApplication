@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+// import PropsTypes from 'prop-types';
 
 const FieldArrayList = (props) => {
-
+    // console.log("props",props)
+    const {history} = props
     const FieldArrayData = useSelector((state) => state.fieldArrayReducer.fieldArray)
 
     console.log("field", FieldArrayData)
@@ -16,7 +17,7 @@ const FieldArrayList = (props) => {
     const toggleEditing = (dataValue, value) => {
         // console.log("click", isEditing)
         // setIsEditing(!isEditing)
-        props.history.push('/FieldArr', dataValue, value)
+        history.push('/FieldArr', dataValue, value)
     }
 
     // const editHandler = (event) => {
@@ -32,7 +33,7 @@ const FieldArrayList = (props) => {
     return (
         <>
             {
-                FieldArrayData.length > 0 && FieldArrayData.map((dataValue, key) => {
+                FieldArrayData.length > 0 && FieldArrayData.map((dataValue ) => {
 
                     return (
                         <>
@@ -43,7 +44,7 @@ const FieldArrayList = (props) => {
                                         Doantion Amount: {dataValue.donationsAmount}<br></br>
 
                                         {
-                                            dataValue.donations.map((value, key) => {
+                                            dataValue.donations.map((value) => {
 
                                                 return (
                                                     <>

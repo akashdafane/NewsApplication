@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import PropsTypes from 'prop-types';
 
-
-const ListFormData = (props) => {
+const ListFormData = () => {
     return (
         <div>
             <ul>
-                {props.userData.map((v, k) => (
-                    <ul>
-                        <li key={k}>{v.firstName}</li>
+                {PropsTypes.userData.map((v, k) => (
+                    <ul key={k}>
+                        <li >{v.firstName}</li>
                         <li>{v.lastName}</li>
                         <li>{v.email}</li>
                         <li>{v.phone}</li>

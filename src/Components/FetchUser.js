@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import MaterialTable from 'material-table';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 
-const FetchUser = (props) => {
+const FetchUser = () => {
     // useEffect(()=>{
     //     filterUserData();
     // },[])
@@ -45,7 +45,7 @@ const FetchUser = (props) => {
                     //         }, 1000)
                     // }),
                     onRowUpdate: (newData, oldData) =>
-                        new Promise((resolve, reject) => {
+                        new Promise((resolve) => {
                             setTimeout(() => {
                                 const dataUpdate = [...data];
                                 const index = oldData.tableData.id;
@@ -56,7 +56,7 @@ const FetchUser = (props) => {
                             }, 1000)
                         }),
                     onRowDelete: oldData =>
-                        new Promise((resolve, reject) => {
+                        new Promise((resolve) => {
                             setTimeout(() => {
                                 const dataDelete = [...data];
                                 const index = oldData.tableData.id;

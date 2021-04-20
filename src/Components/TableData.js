@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-
+import PropsTypes from 'prop-types';
 import usePagination from './Pagination';
 
 const TableData = ({ data, itemsPerPage, startFrom, searchByData }) => {
@@ -100,7 +100,7 @@ const TableData = ({ data, itemsPerPage, startFrom, searchByData }) => {
                 </div>
                 <button type="submit" className="btn btn-primary">Search</button>
             </form>
-            {searchFor && <h2 className="mb-6 has-text-centered is-size-2">Search results for: "{searchFor}"</h2>}
+            {searchFor && <h2 className="mb-6 has-text-centered is-size-2">Search results for: {searchFor}</h2>}
             {slicedData.length > 0 ? <Fragment>
                 <table className="table is-fullwidth is-striped">
                     <thead>
@@ -164,6 +164,13 @@ const TableData = ({ data, itemsPerPage, startFrom, searchByData }) => {
             }
         </div>
     );
+}
+
+TableData.propTypes = {
+    data : PropsTypes.func.isRequired,
+    itemsPerPage : PropsTypes.func.isRequired,
+    startFrom : PropsTypes.func.isRequired,
+    searchByData : PropsTypes.func.isRequired
 }
 
 export default TableData;

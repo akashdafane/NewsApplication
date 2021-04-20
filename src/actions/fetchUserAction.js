@@ -30,12 +30,12 @@
 // export default FetchUsersAction;
 
 import Axios from 'axios';
-import {get} from 'lodash';
+// import {get} from 'lodash';
 import { 
-    FETCH_USER_REQUEST,
+    // FETCH_USER_REQUEST,
     FETCH_USER_SUCCESS,
-    FETCH_USER_FAILUER,
-    FILTER_USER_DATA,
+    // FETCH_USER_FAILUER,
+    // FILTER_USER_DATA,
     FETCH_API_SUCCESS,
     
 } from './types'

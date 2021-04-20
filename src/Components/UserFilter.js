@@ -191,7 +191,7 @@
 
 
 // import { Search } from '@material-ui/icons'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../Components/Common/Input';
 import _ from 'lodash';
@@ -199,9 +199,9 @@ import Button from './Common/Button';
 import { sortByAsc, sortByDesc } from '../actions/actionType';
 import { fetchUserAction } from '../actions/fetchUserAction';
 import { item } from '../actions/actionType';
-import Pagination from '@material-ui/lab/Pagination';
+// import Pagination from '@material-ui/lab/Pagination';
 import ReactPaginate from 'react-paginate';
-import Toast from './Common/Toast'
+// import Toast from './Common/Toast'
 // import { sortAsc } from '../DemoApiData.js/Util'
 // import { sortDescending } from '../DemoApiData.js/Util'
 
@@ -210,7 +210,7 @@ const UserFilter = () => {
 
   const FilterData = useSelector((state) => state.fetchApiReducer.filteredItems)
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
   const userPerPage = 10
   const pagesVisited = pageNumber * userPerPage
@@ -227,7 +227,7 @@ const UserFilter = () => {
  
 
   const handleSearch = (e) => {
-    setSearch(e)
+    // setSearch(e)
     const items = FilterData && FilterData && FilterData.filter((data) => {
       // debugger
       if (e == "")
@@ -245,9 +245,9 @@ const UserFilter = () => {
   // console.log("items", search)
 
   const displayUsers = FilterData.slice(pagesVisited, pagesVisited + userPerPage)
-    .map((tech) => {
+    .map((k,tech) => {
       return (
-        <div>
+        <div key={k}>
           {tech.title}
         </div>
       )
@@ -302,7 +302,7 @@ const UserFilter = () => {
         previousClassName={"previousBttns"}
         nextLinkClassName={"nextbttns"}
         // disabledClassName={"paginationDisabled"}
-        activeClassName={"paginationDisabled"}
+        // activeClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
       {/* <Pagination count={userPerPage} onClick={changePage} pageCount={pageCount}  color="primary" /> */}

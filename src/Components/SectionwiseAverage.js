@@ -1,5 +1,5 @@
 import React from "react";
-import { array } from "yup/lib/locale";
+// import { array } from "yup/lib/locale";
 import { average } from "../DemoApiData.js/Util";
 import students from "./ApiData";
 import AverageofSectionB from './AverageofSectionB';

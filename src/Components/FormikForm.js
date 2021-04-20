@@ -5,13 +5,13 @@ import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
-import { values } from 'lodash';
 // import { values } from 'lodash';
 // import { values } from 'lodash';
+// import { values } from 'lodash';
 
 
 
-const FormikForm = (props) => {
+const FormikForm = () => {
 
     const validationSchema = Yup.object({
         firstName: Yup.string()

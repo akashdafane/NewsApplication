@@ -3,11 +3,11 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import {Toaster, toast} from 'react-hot-toast';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  // const [firstName, setFirstName] = useState('')
+  // const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
 
 const handleLogin = (e) => {
@@ -87,7 +87,7 @@ const handleLogin = (e) => {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                onChange={(e) => setFirstName(e.target.value)}
+                // onChange={(e) => setFirstName(e.target.value)}
                 autoFocus
               />
             </Grid>
@@ -99,7 +99,7 @@ const handleLogin = (e) => {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
-                onChange={(e) => setLastName(e.target.value)}
+                // onChange={(e) => setLastName(e.target.value)}
                 autoComplete="lname"
               />
             </Grid>

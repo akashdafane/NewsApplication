@@ -46,24 +46,24 @@
 
 // export default PieChart
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import axios from 'axios';
 
 const PieChart = () => {
 
-    const [piedata,setPieData] = useState('');
-    const [empAge, setEmpAge] = useState([]);
-    const [empSal, setEmpSal] = useState([]);
+    // const [piedata,setPieData] = useState('');
+    // const [empAge, setEmpAge] = useState([]);
+    // const [empSal, setEmpSal] = useState([]);
 
     useEffect(()=>{
         let empAge = [];
         let empSal = [];
         axios.get('http://dummy.restapiexample.com/api/v1/employees')
         .then(res => {
-            setEmpAge(empAge)
-            setEmpSal(empSal)
+            // setEmpAge(empAge)
+            // setEmpSal(empSal)
             // empAge.push(parseInt(res.data.data))
             // empSal.push(parseInt(res.data.data))
             for(const Objectof of res.data.data){
@@ -73,10 +73,10 @@ const PieChart = () => {
             console.log("demo",res.data)
         })
         // chart()
-       const series= [{
-            name: 'Brand',
-            data: empAge 
-          }]
+      //  const series= [{
+      //       name: 'Brand',
+      //       data: empAge 
+      //     }]
         
     },[])
     

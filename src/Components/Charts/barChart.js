@@ -28,10 +28,10 @@
 // export default barChart
 
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 const BarChart = () => {

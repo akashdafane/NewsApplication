@@ -1,11 +1,11 @@
 import {
-    FETCH_USER_REQUEST,
+    // FETCH_USER_REQUEST,
     FETCH_USER_SUCCESS,
-    FETCH_USER_FAILUER,
-    FILTER_USER_DATA,
+    // FETCH_USER_FAILUER,
+    // FILTER_USER_DATA,
     SORT_BY_ASC,
     SORT_BY_DESC,
-    FETCH_API_SUCCESS,
+    // FETCH_API_SUCCESS,
     ITEM
 } from '../actions/types'
 

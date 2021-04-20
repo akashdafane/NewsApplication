@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './Login.css'
 // import { Link } from "react-router-dom";
-import NewsDetails from './NewsDetails';
+// import NewsDetails from './NewsDetails';
 // import Dashboard from './Dashboard';
 // import { ToastContainer, toast } from "react-toastify";
 import { Toaster, toast } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
-import { startlogin } from "../actions/personAction";
+// import { startlogin } from "../actions/personAction";
 import { connect } from "react-redux";
-import { loadData, login1 } from "../actions/actionType"
-import { bindActionCreators } from 'redux';
-import { loginInfo } from '../actions/loginAction';
+// import { loadData, login1 } from "../actions/actionType"
+// import { bindActionCreators } from 'redux';
+// import { loginInfo } from '../actions/loginAction';
 import { Link, Redirect } from 'react-router-dom';
 import Input from './Common/Input';
 import Button from './Common/Button';
-import Dashboard from './Dashboard';
-import Loader from './Loader';
+// import Dashboard from './Dashboard';
+// import Loader from './Loader';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 // import Checkbox from './Common/Checkbox';
 // import { CheckBox } from '@material-ui/icons';
 
-const Login = (props) => {
+const Login = () => {
 
     // const [email, setEmail] = useState({ email: '' })
     const [email, setEmail] = useState('')
@@ -42,7 +42,7 @@ const Login = (props) => {
     }
 
     // console.log("checkbox",isChecked)
-    const login = (e) => {
+    const login = () => {
         // e.preventDefault();
         // props.dispatch(loginInfo(
         //     email.email,
@@ -55,7 +55,7 @@ const Login = (props) => {
             localStorage.username = email
             localStorage.checkbox = isChecked
         } else {
-
+            console.log("empty")
         }
 
 
@@ -160,17 +160,17 @@ const Login = (props) => {
                             <div className="custom-control custom-checkbox">
                                 <input type="checkbox" className="custom-control-input" id="chk1" name="lsRememberMe" checked={isChecked} onChange={onChangeCheckbox} />
 
-                                <label className="custom-control-label" for="chk1">Remember Me</label>
+                                <label className="custom-control-label" htmlFor="chk1">Remember Me</label>
                             </div>
 
 
-                            <button type="button" className="btn btn-primary btn-block btn-md" id="login" id="button" onClick={login} >Login</button>
+                            <button type="button" className="btn btn-primary btn-block btn-md"  id="button" onClick={login} >Login</button>
                             <Link to="/Signup"> <Button type={"button"} className={"btn btn-success btn-block btn-md"} onClick={() => { }} id="Signup" label={"Signup"} /></Link>
 
                             <br />
                             <button type="button" className="btn btn-danger" >Cancel</button>
                             <span className="psw" id="forget">
-                                "Forget" <a href="#">Password? </a>
+                                Forget <a href="#">Password? </a>
                             </span>
 
                         </div>

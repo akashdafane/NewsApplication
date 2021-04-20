@@ -4,17 +4,18 @@ import {
     CardContent,
     CircularProgress,
     Grid,
-    makeStyles,
+    // makeStyles,
     Typography
 } from '@material-ui/core';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
-import React, { useEffect, useState } from 'react';
-import FieldArrayList from './FieldArrayList'
-import { array, boolean, number, object, string, ValidationError } from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+// import FieldArrayList from './FieldArrayList'
+import {  boolean, number, object, string } from 'yup';
+import { useDispatch } from 'react-redux';
 import { fieldArray } from '../actions/actionType';
 import { Link } from 'react-router-dom';
+import PropsTypes from 'prop-types';
 
 
 
@@ -26,7 +27,7 @@ function FieldArr({ history }) {
 
 
     console.log("history", history)
-    const [test, setTest] = useState([]);
+    // const [test, setTest] = useState([]);
 
     // const { FieldArrayData } = history.location.state
 
@@ -38,12 +39,12 @@ function FieldArr({ history }) {
         fullName,
         donationsAmount,
         termsAndConditions,
-        initialValues,
+        // initialValues,
     } = editdata
 
     const empty = [];
 
-    editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k, v) => {
+    editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k) => {
         // console.log("k", k)
         empty.push({ "institution": k.institution, "percentage": k.percentage });
     })
@@ -113,7 +114,7 @@ function FieldArr({ history }) {
                         // return new Promise((res) => setTimeout(res, 2500));
                     }}
                 >
-                    {({ values, errors, isSubmitting, isValid }) => (
+                    {({ values, isSubmitting }) => (
                         <Form autoComplete="off">
                             <Grid container direction="column" spacing={2}>
                                 <Grid item>
@@ -243,4 +244,9 @@ function FieldArr({ history }) {
         </Card>
     );
 }
+
+
+// FieldArr.propTypes = {
+//     history : PropsTypes
+// }
 export default FieldArr

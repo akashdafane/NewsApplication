@@ -147,14 +147,14 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+// import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { Link, Redirect,Route, useHistory } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import AddTodos from './AddTodos';
-import {usehistory} from 'react-router-dom';
-import Loader from './Loader';
+// import MailIcon from '@material-ui/icons/Mail';
+import { Link } from 'react-router-dom';
+// import Button from '@material-ui/core/Button';
+// import AddTodos from './AddTodos';
+// import {usehistory} from 'react-router-dom';
+// import Loader from './Loader';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -214,8 +214,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Dashboard = (props) => {
-    let history = useHistory();
+const Dashboard = () => {
+    // let history = useHistory();
     // console.log("history",history)
     // console.log("props",props)
     const classes = useStyles();

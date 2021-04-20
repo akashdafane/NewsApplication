@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
 import MaterialTable from 'material-table';
-import { Link } from '@material-ui/core';
+// import { Link } from '@material-ui/core';
+import PropsTypes from 'prop-types';
 
 export default class NewsDetails extends Component {
     constructor(props) {
@@ -43,13 +44,13 @@ export default class NewsDetails extends Component {
     logOut = () => {
         this.loginUser = JSON.parse(localStorage.getItem('newsdata'));
         localStorage.clear();
-        this.props.history.push("/login")
+        PropsTypes.history.push("/login")
     }
 
     render() {
         return (
             <div>
-                <button type="button" className="btn btn-primary btn-block btn-md" id="login" id="button" onClick={this.showdetails} >Show Details</button>
+                <button type="button" className="btn btn-primary btn-block btn-md" id="button" onClick={this.showdetails} >Show Details</button>
                 { this.state.flag && <MaterialTable
                     title=" News Search "
                     columns={[
