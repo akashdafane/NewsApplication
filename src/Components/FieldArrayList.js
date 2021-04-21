@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import PropsTypes from 'prop-types';
 
 const FieldArrayList = (props) => {
     // console.log("props",props)
@@ -17,7 +16,7 @@ const FieldArrayList = (props) => {
     const toggleEditing = (dataValue, value) => {
         // console.log("click", isEditing)
         // setIsEditing(!isEditing)
-        history.push('/FieldArr', dataValue, value)
+       history.push('/FieldArr', dataValue, value)
     }
 
     // const editHandler = (event) => {

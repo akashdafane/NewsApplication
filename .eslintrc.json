@@ -25,5 +25,19 @@
         "react"
     ],
     "rules": {
+        // "react/jsx-filename-extension": [
+        //     1,
+        //     {
+        //       "extensions": [".js", ".jsx"]
+        //     }
+        //   ],
+        //   "react/prop-types": "off"
+        //   "no-underscore-dangle": 0,
+        //   "no-unused-vars": "off",
+        //   "import/imports-first": ["error", "absolute-first"],
+        //   "import/newline-after-import": "error",
+        //   "import/prefer-default-export": 0,
+        //   "semi": "error"
+
     }
 }

@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions/todoActionType';
 import { Link } from 'react-router-dom';
-import PropsTypes from 'prop-types';
+// import PropsTypes from 'prop-types';
 // import {showToast} from '../DemoApiData.js/Util'
 
-const AddTodos = () => {
+const AddTodos = (props) => {
     const [userInput, setUserInput] = useState({ userInput: '' })
     // console.log("toast",showToast)
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            PropsTypes.dispatch(addTodo(userInput.userInput));
+            props.dispatch(addTodo(userInput.userInput));
 
         }}>
             <input type='text'

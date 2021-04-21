@@ -15,9 +15,7 @@ import {  boolean, number, object, string } from 'yup';
 import { useDispatch } from 'react-redux';
 import { fieldArray } from '../actions/actionType';
 import { Link } from 'react-router-dom';
-import PropsTypes from 'prop-types';
-
-
+// import PropsTypes from 'prop-types';
 
 const emptyDonation = { institution: '', percentage: 0 };
 
@@ -41,7 +39,7 @@ function FieldArr({ history }) {
         termsAndConditions,
         // initialValues,
     } = editdata
-
+        
     const empty = [];
 
     editdata.donations && editdata.donations.length > 0 && editdata.donations.map((k) => {
