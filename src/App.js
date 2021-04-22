@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React, { createContext } from 'react';
+// import axios from 'axios';
+// import logo from './logo.svg';
 import './App.css';
+import CompA from "./Component/compA";
+// import CompB from "./Component/compB";
+import GreetComponent from './Component/GreatComponent';
+// import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// const FirstName = createContext();
+// const LastName = createContext();
+
+const App = () => {
+  return(
+    <>
+{/* <FirstName.Provider  value={"Botree"}>
+  <LastName.Provider value={"Tantra"}>
+    <CompA />
+    <CompB />
+  </LastName.Provider>
+</FirstName.Provider>
+
+<GreetComponent name="abc">
+    <p>Children props</p>
+</GreetComponent> */}
+<CompA />
+</>
+    
+  )
 }
 
 export default App;
+// export { FirstName, LastName };
