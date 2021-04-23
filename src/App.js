@@ -3,8 +3,9 @@ import React, { createContext } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import CompA from "./Component/compA";
-// import CompB from "./Component/compB";
+import CompB from "./Component/compB";
 import GreetComponent from './Component/GreatComponent';
+import { BrowserRouter, Route, Switch  } from 'react-router-dom';
 // import axios from 'axios';
 
 // const FirstName = createContext();
@@ -23,7 +24,13 @@ const App = () => {
 <GreetComponent name="abc">
     <p>Children props</p>
 </GreetComponent> */}
+<BrowserRouter>
+<Switch>
 <CompA />
+{/* <CompB /> */}
+</Switch>
+</BrowserRouter>
+
 </>
     
   )

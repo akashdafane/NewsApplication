@@ -1,61 +1,99 @@
 import React, { useContext, useEffect, useState } from 'react'
 // import { FirstName, LastName } from '../App
 import CheckBox from './CheckBox';
-
+// import {Cat} from './mock'
 
 import Axios from 'axios';
 const CompA = () => {
 
-  const [apiData, setApiData] = useState()
-  const [id, setId] = useState()
+  // const [apiData, setApiData] = useState()
+  // const [id, setId] = useState()
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
   const [list, setList] = useState([]);
   
-
     useEffect(() => {
       // const a =[]
       Axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(res => {
-        console.log("res",res) 
+        console.log("res",res.data )
+        // JSON.parse(console.log("json",res.data))
         // a.push(res.data)
         setList(res.data)
       })
-    },[ ]);
+      // console.log(JSON.stringify(Cat))
+    
+    },[]);
+
+    // console.log(JSON.parse(list))
+  // const a = JSON.parse(list)
+  // console.log("a",a)
 
   const handleSelectAll = e => {
+    // var { id, checked } = e.target;
+    // let temp = "";
+    // temp = temp + id;
+    // console.log("emp",temp)
     setIsCheckAll(!isCheckAll);
-    setIsCheck(list.map(li => li.id));
+    setIsCheck(list.map(li => ""+li.id));
     if (isCheckAll) {
       setIsCheck([]);
     }
   };
+  const handleDelete = (isCheck,id) => {
+    console.log('handle',parseInt(isCheck),"id",id)
+
+    var temp1 = parseInt(isCheck)
+    console.log("temp1",temp1)
+    
+    if(temp1 === id ){
+      // console.log("yaaaa");
+      // setIsCheck('')
+      // delete list[0]
+      // return temp1
+      const newList = list.splice(0,id,0);
+
+      console.log("newList",newList)
+
+    }
+
+    // const newList = list.slice(id-1,id);
+    // console.log("de",newList)
+  }
 
   const handleClick = e => {
-    const { id, checked } = e.target;
-    setIsCheck([...isCheck, id]);
+    var { id, checked } = e.target;
+    let temp = "";
+    temp = temp + id;
+    console.log("temp",temp)
+    setIsCheck([...isCheck, temp]);
+    console.log("ischeck",isCheck)
     if (!checked) {
-      setIsCheck(isCheck.filter(item => item !== id));
+      setIsCheck(isCheck.filter(item => item !== temp));
     }
   };
 
     const catalog = list.map(({ id, title }) => {
+      let temp = "" + id;
+      // console.log("id",id)
       return (
         <>
         <CheckBox
-          key={id}
+          key={temp}
           type="checkbox"
           title={title}
           id={id}
           handleClick={handleClick}
-          isChecked={isCheck.includes(id)}
+          isChecked={isCheck.includes(temp)}
         />
         {title}
+        <button type="button" className="btn btn-primary" onClick={() =>  handleDelete(isCheck,id)}>button</button>
+        
         </>
       )
     })
 
-    // console.log(isCheck);
+    console.log("isCheck",isCheck);
 
     // console.log("apidata",a)
    
@@ -125,6 +163,8 @@ const CompA = () => {
 
   // }
 
+
+
   return(
     <div>
       <CheckBox
@@ -136,7 +176,7 @@ const CompA = () => {
       isChecked={isCheckAll}
       />
       selectAll
-      {catalog}
+      {catalog} 
     </div>
   )
 }
