@@ -6,6 +6,7 @@ import CompA from "./Component/compA";
 import CompB from "./Component/compB";
 import GreetComponent from './Component/GreatComponent';
 import { BrowserRouter, Route, Switch  } from 'react-router-dom';
+import Routes from './Routes'
 // import axios from 'axios';
 
 // const FirstName = createContext();
@@ -13,25 +14,10 @@ import { BrowserRouter, Route, Switch  } from 'react-router-dom';
 
 const App = () => {
   return(
-    <>
-{/* <FirstName.Provider  value={"Botree"}>
-  <LastName.Provider value={"Tantra"}>
-    <CompA />
-    <CompB />
-  </LastName.Provider>
-</FirstName.Provider>
+  <div>
+  <Routes />
 
-<GreetComponent name="abc">
-    <p>Children props</p>
-</GreetComponent> */}
-<BrowserRouter>
-<Switch>
-<CompA />
-{/* <CompB /> */}
-</Switch>
-</BrowserRouter>
-
-</>
+  </div>
     
   )
 }
