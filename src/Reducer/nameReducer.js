@@ -5,10 +5,10 @@ const initialState = {
 }
 
 const nameReducer = (state = initialState,action) => {
-  switch (action.type) {
+  switch (action.type){
     case SET_FIRSTNAME:
       return{
-        firstName : action
+        name : action.payload
       };
       default:
         return state;

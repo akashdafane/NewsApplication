@@ -3,23 +3,34 @@ import { useFormik, useformik } from 'formik';
 // import Index from '../Component/Index';
 // import { useDispatch } from 'react-redux';
 import { addName } from '../Actions/home';
+import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
-const Home = () => {
+const Home = ({ history }) => {
 
-  // const [name,setName] = useState()
-  // const dispatch = useDispatch()
-  // console.log("name",name)
+  console.log("history",history)
+
+  const dispatch = useDispatch()
+
+  const editData = history.location.state || ''
+
+  const Data = useSelector((state) => state.nameReducer.name)
+
+  const { firstName } = editData
+
+  console.log("name",Data.firstName)
+  
 
 
   const formik = useFormik({
     initialValues:{
-      firstName:'',
+      firstName: firstName,
     },
     onSubmit: values =>{
       console.log("onSubmit",values)
-      // dispatch(addName(values.firstName))
+      dispatch(addName(values))
       // setName(values.firstName)
     }
   })
@@ -47,11 +58,10 @@ const Home = () => {
           </div>
         </div>
       </form>
-      {/* {name}
-      <Index data={name}/> */}
+    <h1>{Data.firstName}</h1>
     </div>
     
   )
 }
 
-export default Home
+export default connect()(Home);

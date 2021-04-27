@@ -48,14 +48,14 @@ const getIndex = (data, id) => {
  }
 
 const handleDeteteAll = (isCheck) => {
-      if(isCheckAll === true) {
+      // if(isCheckAll === true) {
         var a = [...isCheck]
         a.forEach(id => {
           var index = getIndex(list, id);
           list.splice(index, 1);
         })
         setIsCheck([])
-      }
+      // }
   }
 
   const handleClick = e => {
