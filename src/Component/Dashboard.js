@@ -6,6 +6,7 @@ const Dashboard = () => {
     <>
     <h1>Dashboard</h1>
 
+    <Link to="/newsUpdate"><button type="button" className="btn btn-primary">NewsUpdate</button> </Link>
     <Link to="/compA"><button type="button" className="btn btn-primary">CompA</button> </Link>
     <Link to="/home"><button type="button" className="btn btn-primary">Home</button></Link>
     <Link to="/index"><button type="button" className="btn btn-primary">Index</button></Link>

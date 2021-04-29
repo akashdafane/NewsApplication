@@ -6,11 +6,13 @@ import {
   Redirect,
   useLocation,
 } from 'react-router-dom';
-import CompA from './Component/compA';
+import SortData from './Component/SortData';
 import CompB from './Component/compB';
 import Dashboard from './Component/Dashboard';
 import Home from './Component/Home';
 import Index from './Component/Index';
+import NewsUpdate from './Component/newsUpdate';
+import CompA from './Component/compA';
 
 
 
@@ -19,6 +21,8 @@ const Routes = () => {
    <Router>
    <div>
   <Switch>
+    <Route path="/newsUpdate" component={NewsUpdate}/>
+    {/* <Route path="/SortData" component={SortData}/> */}
     <Route path="/compA" component={CompA}/>
     <Route path="/compB" component={CompB} />
     <Route path="/home" component={Home}/>

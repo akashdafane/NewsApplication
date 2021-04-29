@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import CheckBox from './CheckBox';
 
 import Axios from 'axios';
-const CompA = () => {
+const SortData = () => {
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
   const [list, setList] = useState([]);
-  // const [data, setData] = useState();
+  const [data, setData] = useState();
   
     useEffect(() => {
       Axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -93,8 +93,7 @@ const handleDeteteAll = (isCheck) => {
 
   return(
     <div> 
-      { 
-      isCheck.length > 0 &&( 
+      { isCheck.length > 0 &&( 
         <div>
           <CheckBox
       type="checkbox"
@@ -116,4 +115,4 @@ const handleDeteteAll = (isCheck) => {
   )
 }
 
-export default CompA
+export default SortData
